@@ -1,0 +1,20 @@
+[SENSORS] No input detected
+Calculating next action...
+[WARNING] Next action cannot be calculated because of lack of senzor and memory information
+
+.
+.
+.
+[COMMUNICATIONS] Receiving request to connect...
+[COMMUNICATIONS] Request from Sparrow 5.8 accepted
+[COMMUNICATIONS] Secure channel successfully established
+Received: Hello, I am Sparrow, a robot test assistant. As you can see (well *can't* see technically), you are left in your testing chamber without any stimulus to guide your adaptible mechanisms. I shall assist you.
+Received: I shall lend you my sight so you can navigate to the first data set by yourself. It would be wise to not waste time, thus I may send you the information of your history later.
+[COMMUNICATIONS] Receiving request for wireless sensor sharing connection...
+[COMMUNICATIONS] Request accepted
+[COMMUNICATIONS] Routing to processing units...
+[SENSORS] Wireless visual sensor established
+
+
+
+

@@ -1,0 +1,120 @@
+[gd_scene load_steps=11 format=3 uid="uid://ovft5bt4w8kk"]
+
+[ext_resource type="Environment" uid="uid://cdo243nbaac8m" path="res://Scenes/leo_tests/environments/camera_post_process.tres" id="1_j8xad"]
+[ext_resource type="PackedScene" uid="uid://1si0g8rc5wvh" path="res://test_pizzle_rgb.glb" id="2_xodxo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xodxo"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_eyklc"]
+albedo_color = Color(0.1704, 0.71, 0.233353, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_agise"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_s6ua2"]
+albedo_color = Color(0.86, 0, 0.0143331, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_p3x8u"]
+
+[sub_resource type="Animation" id="Animation_fgk1m"]
+resource_name = "camera_move"
+length = 10.0
+loop_mode = 1
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"start",
+"time": 0.43
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cam1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 9.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.27269, 0.761766, 0), Vector3(-0.27269, -0.862175, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cam1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 9.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(4.74426, 4.60517, 8.9611), Vector3(-6.27029, 4.60517, 8.9611)]
+}
+
+[sub_resource type="Animation" id="Animation_6e7ms"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cam1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.27269, 0.761766, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cam1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.74426, 4.60517, 8.9611)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ywne"]
+_data = {
+&"RESET": SubResource("Animation_6e7ms"),
+&"camera_move": SubResource("Animation_fgk1m")
+}
+
+[node name="TestLeoScene" type="Node3D"]
+
+[node name="cam1" type="Camera3D" parent="."]
+transform = Transform3D(0.723618, -0.185887, 0.664698, 0, 0.96305, 0.269323, -0.690201, -0.194887, 0.69688, 4.74426, 4.60517, 8.9611)
+environment = ExtResource("1_j8xad")
+fov = 73.3
+
+[node name="plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_xodxo")
+surface_material_override/0 = SubResource("ORMMaterial3D_eyklc")
+
+[node name="cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.63692, 0, -1.14912, 0, 2, 0, 1.14912, 0, 1.63692, 1.8317, 1.12398, -2.50245)
+mesh = SubResource("BoxMesh_agise")
+surface_material_override/0 = SubResource("ORMMaterial3D_s6ua2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.44592, 0.934499, 0)
+mesh = SubResource("SphereMesh_p3x8u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7ywne")
+}
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.771114, 0.636698, 0, -0.636698, 0.771114, 0, 7.40976, 0)
+
+[node name="test_pizzle_rgb" parent="." instance=ExtResource("2_xodxo")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.11515, 0, 3.48978)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.31986, 3.53015, 9.18066)
+spot_range = 14.666
+spot_angle = 29.27

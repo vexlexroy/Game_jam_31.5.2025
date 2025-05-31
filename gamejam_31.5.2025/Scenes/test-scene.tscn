@@ -1,8 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://yi2kdxmvs3uf"]
+[gd_scene load_steps=7 format=3 uid="uid://yi2kdxmvs3uf"]
+
+[ext_resource type="Script" uid="uid://bt4cwxfcsst35" path="res://scripts/test/test_script.gd" id="1_vjmrj"]
+[ext_resource type="Shader" uid="uid://c2k602efv1ysx" path="res://scripts/test/disintegration-shader.gdshader" id="2_cjygo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cjygo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lu4tt"]
+noise = SubResource("FastNoiseLite_cjygo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lu4tt"]
+render_priority = 0
+shader = ExtResource("2_cjygo")
+shader_parameter/limit = 0.335
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_lu4tt")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hkptj"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_vjmrj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_lu4tt")
 mesh = SubResource("CapsuleMesh_hkptj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

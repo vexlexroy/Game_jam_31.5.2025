@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://dthac3lsfrvrp"]
+
+[ext_resource type="PackedScene" uid="uid://yi2kdxmvs3uf" path="res://Scenes/test-scene.tscn" id="1_cmcip"]
+[ext_resource type="Script" uid="uid://dehl15u4ukycd" path="res://scripts/test/color_evolution_test.gd" id="1_ogpgc"]
+[ext_resource type="Shader" uid="uid://c0jglem6irnn" path="res://scripts/test/vision-evolution.gdshader" id="2_ogpgc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ogpgc"]
+shader = ExtResource("2_ogpgc")
+shader_parameter/stage = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmcip"]
+albedo_color = Color(0.7, 0.6, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ogpgc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogpgc"]
+albedo_color = Color(0.4, 0.8, 0.257, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mmf3"]
+albedo_color = Color(0.7, 0.3, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fav72"]
+albedo_color = Color(0.7, 0.6, 0.2, 1)
+
+[node name="Test-scene2" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.964765, 0.976675, 3.49953)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.778243, -0.452882, 0.435012, 0, 0.692735, 0.721192, -0.627963, -0.561263, 0.539116, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_ogpgc")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ogpgc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Swatch" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41337, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Swatch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73558, 2.70169, 0)
+material_override = SubResource("StandardMaterial3D_cmcip")
+mesh = SubResource("BoxMesh_ogpgc")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Swatch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8212, 2.71262, -2.38419e-07)
+material_override = SubResource("StandardMaterial3D_ogpgc")
+mesh = SubResource("BoxMesh_ogpgc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Swatch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74124, 1.36807, 0)
+material_override = SubResource("StandardMaterial3D_cmcip")
+mesh = SubResource("BoxMesh_ogpgc")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Swatch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75278, 1.39647, 0)
+material_override = SubResource("StandardMaterial3D_8mmf3")
+mesh = SubResource("BoxMesh_ogpgc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Swatch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8145, -0.19365, 0)
+material_override = SubResource("StandardMaterial3D_cmcip")
+mesh = SubResource("BoxMesh_ogpgc")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Swatch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81109, -0.176387, 0)
+material_override = SubResource("StandardMaterial3D_fav72")
+mesh = SubResource("BoxMesh_ogpgc")
+
+[node name="Node3D" parent="." instance=ExtResource("1_cmcip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50005, 1.08807, 0)

@@ -1,0 +1,45 @@
+extends Camera3D
+class_name PlayerCamera
+
+### Type: 0 - fpv, 1 - tpv, 2 - top down
+@export var type = 0;
+@export var rotation_parent : Node3D = null;
+
+## Get transform on start
+@onready var start_rotation = self.rotation;
+@onready var parent_start_rotation = rotation_parent.rotation if rotation_parent != null else null;
+
+func reset_rotation():
+	if (rotation_parent != null):
+		rotation_parent.rotation = parent_start_rotation;
+	self.rotation = start_rotation;
+	pass
+
+func look_input(relative):
+	match (type):
+		0: # First person
+			# Vertical
+			self.rotate_x(-relative.y * 0.01);
+			self.rotation.x = clamp(self.rotation.x, deg_to_rad(-80), deg_to_rad(80))
+			# Horizontal
+			rotation_parent.rotate_y(-relative.x * 0.01);
+		1: # Third person
+			pass
+			#rotation_parent.global_rotate(Vector3.RIGHT, -relative.y * 0.01);
+			#rotation_parent.global_rotate(Vector3.UP, -relative.x * 0.01);
+		2: # Top down
+			rotation_parent.rotate_y(-relative.x * 0.01);
+			pass
+
+func get_forward():
+	match (type):
+		0, 1: return self.get_global_transform_interpolated().basis.z;
+		2: 
+			return -self.get_global_transform_interpolated().basis.y;
+	return null;
+func get_right():
+	match (type):
+		0, 1: return self.get_global_transform_interpolated().basis.x;
+		2: 
+			return self.get_global_transform_interpolated().basis.x;
+	return null;

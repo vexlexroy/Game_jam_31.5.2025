@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://ce1o02mg3orci"]
+
+[ext_resource type="Script" uid="uid://dsak5lfdep61k" path="res://scripts/player.gd" id="1_errlg"]
+[ext_resource type="Script" uid="uid://clubnvrnjlkpi" path="res://scripts/input_handler.gd" id="1_iyx0m"]
+[ext_resource type="Script" uid="uid://buf80ydmp1k2n" path="res://scripts/player_camera.gd" id="2_bl13t"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_errlg"]
+size = Vector2(10, 10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bl13t"]
+points = PackedVector3Array(-5, 0, -5, -5, 0, 5, 5, 0, -5, 5, 0, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h7fwk"]
+size = Vector3(0.2, 2, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uvvdy"]
+size = Vector3(10, 2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ij1v8"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_errlg"]
+height = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iyx0m"]
+
+[node name="Test" type="Node3D"]
+
+[node name="InputHandler" type="Node" parent="."]
+script = ExtResource("1_iyx0m")
+
+[node name="Environnment" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Environnment"]
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Environnment/Floor"]
+mesh = SubResource("PlaneMesh_errlg")
+skeleton = NodePath("../..")
+
+[node name="FloorCol" type="CollisionShape3D" parent="Environnment/Floor"]
+shape = SubResource("ConvexPolygonShape3D_bl13t")
+
+[node name="WallLeft" type="MeshInstance3D" parent="Environnment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+mesh = SubResource("BoxMesh_h7fwk")
+
+[node name="WallFront" type="MeshInstance3D" parent="Environnment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+mesh = SubResource("BoxMesh_uvvdy")
+skeleton = NodePath("../WallLeft")
+
+[node name="Box0" type="MeshInstance3D" parent="Environnment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78, 0.3, -3.068)
+mesh = SubResource("BoxMesh_ij1v8")
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("player_cameras")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_errlg")
+player_cameras = [NodePath("Eyes/Head/FirstPersonPerspective"), NodePath("Eyes/Head/FirstPersonOrthogonal"), NodePath("Eyes/ThirdPersonEye/ThirdPersonPerspective"), NodePath("Eyes/TopDownHead/TopDownOrthogonal"), NodePath("Eyes/TopDownHead/TopDownPerspective")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_errlg")
+
+[node name="Eyes" type="Node3D" parent="Player"]
+
+[node name="Head" type="Node3D" parent="Player/Eyes"]
+
+[node name="FirstPersonPerspective" type="Camera3D" parent="Player/Eyes/Head" node_paths=PackedStringArray("rotation_parent")]
+size = 5.35238
+script = ExtResource("2_bl13t")
+rotation_parent = NodePath("..")
+
+[node name="FirstPersonOrthogonal" type="Camera3D" parent="Player/Eyes/Head" node_paths=PackedStringArray("rotation_parent")]
+projection = 1
+script = ExtResource("2_bl13t")
+rotation_parent = NodePath("..")
+
+[node name="ThirdPersonEye" type="Node3D" parent="Player/Eyes"]
+
+[node name="ThirdPersonPerspective" type="Camera3D" parent="Player/Eyes/ThirdPersonEye"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.20491, 1.72383)
+script = ExtResource("2_bl13t")
+type = 1
+
+[node name="TopDownHead" type="Node3D" parent="Player/Eyes"]
+
+[node name="TopDownOrthogonal" type="Camera3D" parent="Player/Eyes/TopDownHead" node_paths=PackedStringArray("rotation_parent")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+projection = 1
+size = 8.0
+script = ExtResource("2_bl13t")
+type = 2
+rotation_parent = NodePath("..")
+
+[node name="TopDownPerspective" type="Camera3D" parent="Player/Eyes/TopDownHead" node_paths=PackedStringArray("rotation_parent")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+size = 8.0
+script = ExtResource("2_bl13t")
+type = 2
+rotation_parent = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_iyx0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.440832, 0.897589, 0, -0.897589, 0.440832, 0, 0, 0)

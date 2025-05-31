@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://he22f740uqfi"]
+[gd_scene load_steps=17 format=3 uid="uid://he22f740uqfi"]
 
 [ext_resource type="Texture2D" uid="uid://ddprscrpsofah" path="res://assets/textures/ground037_alb_ht.png" id="1_vx4ye"]
 [ext_resource type="Texture2D" uid="uid://c1ots7w6i0i1q" path="res://assets/textures/ground037_nrm_rgh.png" id="2_k8srx"]
 [ext_resource type="Texture2D" uid="uid://c88j3oj0lf6om" path="res://assets/textures/rock023_alb_ht.png" id="3_0gwhh"]
 [ext_resource type="Texture2D" uid="uid://c307hdmos4gtm" path="res://assets/textures/rock023_nrm_rgh.png" id="4_delo1"]
+[ext_resource type="Texture2D" uid="uid://bavlxv35p41hm" path="res://assets/textures/ground080_alb_ht.png" id="5_0gwhh"]
+[ext_resource type="Texture2D" uid="uid://sn2umkpqgjk6" path="res://assets/textures/ground080_nrm_rgh.png" id="6_delo1"]
 
 [sub_resource type="Gradient" id="Gradient_xw33c"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -78,9 +80,15 @@ id = 1
 albedo_texture = ExtResource("3_0gwhh")
 normal_texture = ExtResource("4_delo1")
 
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_t1esk"]
+name = "ground080_alb_ht"
+id = 2
+albedo_texture = ExtResource("5_0gwhh")
+normal_texture = ExtResource("6_delo1")
+
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_0gwhh"]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_k8srx")])
-texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_7hvjg"), SubResource("Terrain3DTextureAsset_k2qis")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_7hvjg"), SubResource("Terrain3DTextureAsset_k2qis"), SubResource("Terrain3DTextureAsset_t1esk")])
 
 [node name="EnvironmentTesting" type="Node3D"]
 

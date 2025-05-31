@@ -1,0 +1,29 @@
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://cdo243nbaac8m"]
+
+[sub_resource type="Curve" id="Curve_icg5t"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6iwpo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.95849, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ok1th"]
+_data = [Vector2(0.00943396, 0), 0.0, 0.0, 0, 0, Vector2(0.990566, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_shqek"]
+curve_x = SubResource("Curve_icg5t")
+curve_y = SubResource("Curve_6iwpo")
+curve_z = SubResource("Curve_ok1th")
+
+[resource]
+glow_enabled = true
+fog_light_energy = 0.94
+fog_density = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_gi_inject = 0.71
+volumetric_fog_length = 71.31
+adjustment_enabled = true
+adjustment_color_correction = SubResource("CurveXYZTexture_shqek")

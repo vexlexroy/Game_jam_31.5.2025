@@ -16,8 +16,6 @@ func switch_camera(target_ind):
 	cur_cam_ind = target_ind;
 	(player_cameras[target_ind] as Camera3D).make_current();
 
-
-
 ### _physics_process
 func process_movement(delta):
 	# GRAVITY
@@ -39,41 +37,22 @@ func process_movement(delta):
 func _physics_process(delta):
 	process_movement(delta);
 
-
-### _Input
-func process_key_input(event):
-	if not event.pressed:
-		match event.physical_keycode:
-			KEY_1: switch_camera(0);
-			KEY_2: switch_camera(1);
-			KEY_3: switch_camera(2);
-			KEY_4: switch_camera(3);
-			KEY_5: switch_camera(4);
-		#if (index != active_cam_index):
-			#get_viewport().get_camera() RESET ROTATION
-
-func process_mouse_input(relative):
-	## Look
-	current_camera().look_input(relative);
-
-func _input(event):
-	print("hello");
-	# Focus/Unfocus input
-	if event is InputEventMouseButton:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event.is_action_pressed("Escape"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	# Other
-	if event is InputEventKey:
-		process_key_input(event);
-	if event is InputEventMouseMotion:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			process_mouse_input(event.relative);
-
-
-
-
+### _ready
 func _ready():
 	for i in range(len(enabled_cameras)):
 		if (enabled_cameras[i]): 
 			switch_camera(i); break;
+
+
+
+### Other
+func pick_up_evolution(level : int):
+	match (level):
+		1:  # fpv eye
+			%"InputHandler".control_active = false;
+			await %"UI".close_anim(0.4);
+			enabled_cameras[0] = true;
+			switch_camera(0);
+			await get_tree().create_timer(1.0).timeout
+			await %"UI".open_anim(0.4);
+			%"InputHandler".control_active = true;

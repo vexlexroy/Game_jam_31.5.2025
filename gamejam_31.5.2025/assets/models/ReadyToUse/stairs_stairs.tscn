@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhrs7u4pcjrcu"]
+
+[ext_resource type="ArrayMesh" uid="uid://gtso2fvnhllu" path="res://assets/meshes/stairs_stairs.res" id="1_m3vlv"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lda83"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0.3, -0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.3, -0.250098, 0.5, 0.3, -0.5, 0.5, 0, 0.5, -0.5, 0.0749706, 0.5, 0.5, 0.3, -0.250098, 0.5, 0.0749706, 0.5)
+
+[node name="StairsStairs" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_m3vlv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_lda83")

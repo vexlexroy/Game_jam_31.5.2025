@@ -1,6 +1,7 @@
 extends Node
 
 var control_active := false;
+var controlling_drone := true;
 
 func _input(event):
 	if (control_active):
@@ -19,14 +20,20 @@ func _input(event):
 func process_key_input(event):
 	if not event.pressed:
 		match event.physical_keycode:
-			KEY_1: %"Player".switch_camera(0);
-			KEY_2: %"Player".switch_camera(1);
-			KEY_3: %"Player".switch_camera(2);
-			KEY_4: %"Player".switch_camera(3);
-			KEY_5: %"Player".switch_camera(4);
+			KEY_1: %"CameraManager".switch_camera(0);
+			KEY_2: %"CameraManager".switch_camera(1);
+			KEY_3: %"CameraManager".switch_camera(2);
+			#KEY_4: %"Player".switch_camera(3);
+			#KEY_5: %"Player".switch_camera(4);
 		#if (index != active_cam_index):
 			#get_viewport().get_camera() RESET ROTATION
 
 func process_mouse_input(relative):
 	## Look
-	%"Player".current_camera().look_input(relative);
+	%"CameraManager".current_camera().look_input(relative);
+
+
+func enable_control(value : bool):
+	control_active = value;
+	%"Player".reset_velocity();
+	%"Drone".reset_velocity();

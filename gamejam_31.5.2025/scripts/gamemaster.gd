@@ -4,6 +4,9 @@ extends Node
 
 ### On start
 func _ready():
+	for i in range(len(%"CameraManager".enabled_cameras)):
+		if (%"CameraManager".enabled_cameras[i]): 
+			%"CameraManager".switch_camera(i); break;
 	if (not skip_intro):
 		# Console text
 		%"UI".close_instant();

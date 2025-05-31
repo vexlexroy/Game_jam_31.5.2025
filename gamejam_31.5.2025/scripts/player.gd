@@ -1,59 +1,60 @@
 extends CharacterBody3D
 
-@export var speed = 5
+@export var can_move := true;
+@export var acceleration : float = 20;
+@export var deceleration : float = 10;
+@export var max_speed : float = 4.5;
+var cur_velocity := Vector3.ZERO;
+
 @export var can_jump : bool = false;
 @export var jumpStrength = 5;
 
-@export var player_cameras : Array[PlayerCamera];
-@export var enabled_cameras : Array[bool];
-var cur_cam_ind : int = 0;
-func current_camera() -> PlayerCamera: return player_cameras[cur_cam_ind];
-
-### General
-func switch_camera(target_ind):
-	if (enabled_cameras[target_ind]):
-		if (cur_cam_ind != target_ind):
-			current_camera().reset_rotation();
-		cur_cam_ind = target_ind;
-		(player_cameras[target_ind] as Camera3D).make_current();
 
 ### _physics_process
 func process_movement(delta):
 	# GRAVITY
 	var gravity_vel = Vector3.ZERO;
 	if not is_on_floor():
-			gravity_vel += get_gravity() * delta
-	elif can_jump and Input.is_action_just_pressed("Movement_Jump"):
-			gravity_vel -= get_gravity().normalized() * jumpStrength
-	if is_on_floor():
-		var input_move_dir := Input.get_vector("Movement_Left", "Movement_Right", "Movement_Forward", "Movement_Backward")
-		#var direction : Vector3 = current_camera().get_forward() * Vector3(input_move_dir.x, 0, input_move_dir.y);
-		var direction : Vector3 = (current_camera().get_forward() * input_move_dir.y) + (current_camera().get_right() * input_move_dir.x)
-		#.get_global_transform_interpolated().basis * Vector3(input_move_dir.x, 0, input_move_dir.y)
-		velocity = direction * speed;
-	velocity = velocity + gravity_vel;
-	var pre_slide_vel = velocity;
+		gravity_vel += get_gravity() * delta
+	var decelerate := true;
+	if (can_move):
+		if is_on_floor():
+			if can_jump and Input.is_action_just_pressed("Movement_Jump"):
+					gravity_vel -= get_gravity().normalized() * jumpStrength
+			else:
+				var input_move_dir := Input.get_vector("Movement_Left", "Movement_Right", "Movement_Forward", "Movement_Backward")
+				var direction : Vector3 = (%"CameraManager".current_camera().get_forward() * input_move_dir.y) + (%"CameraManager".current_camera().get_right() * input_move_dir.x)
+				if (direction != Vector3.ZERO):
+					cur_velocity += direction * acceleration * delta;
+					if (cur_velocity.length() > max_speed):
+						cur_velocity = cur_velocity * (max_speed / cur_velocity.length());
+					decelerate = false;
+	if (decelerate):
+		cur_velocity = cur_velocity.lerp(Vector3.ZERO, deceleration * delta);
+	velocity = cur_velocity + gravity_vel;
+	#print(velocity.length());
+	#var pre_slide_vel = velocity;
 	move_and_slide()
+func reset_velocity():
+	cur_velocity = Vector3.ZERO; velocity = Vector3.ZERO;
 
 func _physics_process(delta):
 	process_movement(delta);
 
-### _ready
-func _ready():
-	for i in range(len(enabled_cameras)):
-		if (enabled_cameras[i]): 
-			switch_camera(i); break;
-
-
+func _process(delta):
+	## Constantly rotate mesh based on look
+	$"Mesh".rotation.y = %"CameraManager".current_camera().rotation_parent.rotation.y;
 
 ### Other
 func pick_up_evolution(level : int):
 	match (level):
 		1:  # fpv eye
-			%"InputHandler".control_active = false;
+			%"InputHandler".enable_control(false);
 			await %"UI".close_anim(0.4);
-			enabled_cameras[0] = true;
-			switch_camera(0);
+			%"CameraManager".enabled_cameras[0] = true;
+			%"CameraManager".switch_camera(0);
 			await get_tree().create_timer(1.0).timeout
 			await %"UI".open_anim(0.4);
-			%"InputHandler".control_active = true;
+			%"InputHandler".enable_control(true);
+		2: # red eye
+			pass

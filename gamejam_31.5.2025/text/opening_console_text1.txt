@@ -1,0 +1,20 @@
+[BOOT] Successfully finished booting sequence
+
+
+[MICROPHONE] Sound detected...
+[MICROPHONE] Human voice recognized, transcribing...
+[TRANSCRIBED CONVERSATION]
+MALE 1: As you can see sir, this is the newest version. We think it can successfully read information from the environment and print parts accordingly to its needs.
+MALE 2: Well, this version better work because we are running out of time. No more delays, run the simulation.
+FEMALE 1: Yes, sir!
+(Footsteps heard)
+MALE 3: Sir! They are here!
+MALE 2: Already? Alright, cut the program and delete all evidence, we cannot let them get access to the program!
+(Shots fired)
+
+
+
+
+
+
+

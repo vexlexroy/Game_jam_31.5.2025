@@ -25,7 +25,7 @@ func open_anim(seconds):
 		delta -= s_height * (get_process_delta_time() / seconds);
 		Blink_Node.position.y = blink_start_pos_y + delta;
 		await get_tree().process_frame
-	open_instant()
+	open_instant();
 func blink(seconds):
 	await close_anim(seconds);
 	open_anim(seconds);
@@ -33,6 +33,3 @@ func blink(seconds):
 func _ready():
 	# Reset blink
 	Blink_Node.position.y = -1024; blink_start_pos_y = -1024;
-	close_instant();
-	await get_tree().create_timer(1.0).timeout
-	open_anim(0.4);

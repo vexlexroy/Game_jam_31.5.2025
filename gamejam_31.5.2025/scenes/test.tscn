@@ -1,11 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://17kxm3mkt36i"]
+[gd_scene load_steps=22 format=3 uid="uid://ce1o02mg3orci"]
 
 [ext_resource type="Script" uid="uid://dsak5lfdep61k" path="res://scripts/player.gd" id="1_errlg"]
-[ext_resource type="Script" path="res://scripts/input_handler.gd" id="1_iyx0m"]
-[ext_resource type="Script" path="res://scripts/player_camera.gd" id="2_bl13t"]
+[ext_resource type="Script" uid="uid://clubnvrnjlkpi" path="res://scripts/input_handler.gd" id="1_iyx0m"]
+[ext_resource type="Script" uid="uid://c6gll2foh1big" path="res://scripts/gamemaster.gd" id="1_yk7ts"]
+[ext_resource type="Script" uid="uid://buf80ydmp1k2n" path="res://scripts/player_camera.gd" id="2_bl13t"]
 [ext_resource type="ArrayMesh" uid="uid://rgsmndu3454t" path="res://meshes/maze0.res" id="2_lpvoh"]
+[ext_resource type="Script" uid="uid://gjbxnss1s7aa" path="res://scripts/textloader.gd" id="3_ajshl"]
 [ext_resource type="Texture2D" uid="uid://ttc0mljg6iox" path="res://images/Blank_black.png" id="4_74lek"]
 [ext_resource type="Script" uid="uid://d21eid4bwme2m" path="res://scripts/ui.gd" id="4_j5jx5"]
+[ext_resource type="Script" uid="uid://c55jwcd0v1hwc" path="res://scripts/collectible.gd" id="7_at5dv"]
+[ext_resource type="FontFile" uid="uid://cs8bja64fgrev" path="res://fonts/bahnschrift.ttf" id="7_jcd4p"]
+[ext_resource type="Script" uid="uid://dmx0lbs3c4s5y" path="res://scripts/ui_console.gd" id="7_uacia"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_errlg"]
 size = Vector2(100, 100)
@@ -31,10 +36,22 @@ height = 1.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lpvoh"]
 height = 1.0
 
+[sub_resource type="BoxMesh" id="BoxMesh_lpvoh"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lpvoh"]
+size = Vector3(0.25, 0.25, 0.25)
+
 [node name="Test" type="Node3D"]
+script = ExtResource("1_yk7ts")
 
 [node name="InputHandler" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_iyx0m")
+
+[node name="TextLoader" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_ajshl")
 
 [node name="Environnment" type="Node3D" parent="."]
 
@@ -76,7 +93,9 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_lpvoh")
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("player_cameras")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 3
 script = ExtResource("1_errlg")
 player_cameras = [NodePath("Eyes/Head/FirstPersonPerspective"), NodePath("Eyes/Head/FirstPersonOrthogonal"), NodePath("Eyes/ThirdPersonEye/ThirdPersonPerspective"), NodePath("Eyes/TopDownHead/TopDownOrthogonal"), NodePath("Eyes/TopDownHead/TopDownPerspective")]
 enabled_cameras = Array[bool]([false, false, false, true, false])
@@ -136,6 +155,7 @@ rotation_parent = NodePath("..")
 shape = SubResource("CapsuleShape3D_lpvoh")
 
 [node name="UI" type="Control" parent="Player" node_paths=PackedStringArray("Blink_Node")]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,5 +173,87 @@ offset_top = -1024.0
 grow_horizontal = 2
 texture = ExtResource("4_74lek")
 
+[node name="UIConsole" type="Control" parent="Player/UI" node_paths=PackedStringArray("FullScreen", "SideScreen")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_uacia")
+FullScreen = NodePath("FullScreen")
+SideScreen = NodePath("SideScreen")
+
+[node name="FullScreen" type="Control" parent="Player/UI/UIConsole"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Player/UI/UIConsole/FullScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_74lek")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/UI/UIConsole/FullScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = 6
+theme_override_fonts/normal_font = ExtResource("7_jcd4p")
+theme_override_font_sizes/normal_font_size = 60
+text = "Hello there
+General Kenobi
+(I don't know what they say after)
+(Also something after, idk dude)"
+visible_characters = 43
+visible_ratio = 0.468085
+
+[node name="SideScreen" type="Control" parent="Player/UI/UIConsole"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Player/UI/UIConsole/SideScreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/UI/UIConsole/SideScreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, -0.433013, 0.75, 0, 5, 0)
+
+[node name="Collectibles" type="Node" parent="."]
+
+[node name="FPVEye" type="Node3D" parent="Collectibles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.077, 0.25, 0)
+script = ExtResource("7_at5dv")
+level = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/FPVEye"]
+transform = Transform3D(1, 0, 0, 0, 0.755728, 0.654886, 0, -0.654886, 0.755728, 0, 0, 0)
+mesh = SubResource("BoxMesh_lpvoh")
+
+[node name="Area3D" type="Area3D" parent="Collectibles/FPVEye"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/FPVEye/Area3D"]
+shape = SubResource("BoxShape3D_lpvoh")
+
+[connection signal="body_entered" from="Collectibles/FPVEye/Area3D" to="Collectibles/FPVEye" method="_on_area_3d_body_entered"]

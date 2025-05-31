@@ -39,7 +39,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://assets/meshes/Droid/Body.res"
 },
 "droid_44_I_Icosphere_001": {
@@ -47,7 +47,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://assets/meshes/Droid/bottom.res"
 },
 "droid_44_I_Sphere": {
@@ -55,7 +55,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://assets/meshes/Droid/EyeB.res"
 },
 "droid_44_I_Sphere_001": {
@@ -63,7 +63,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://assets/meshes/Droid/EyeG.res"
 },
 "droid_44_I_Sphere_002": {
@@ -71,7 +71,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://assets/meshes/Droid/EyeR.res"
 },
 "droid_44_I_Sphere_003": {
@@ -79,7 +79,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://assets/meshes/Droid/EyeW.res"
 },
 "droid_44_I_Torus_001": {
@@ -87,7 +87,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://assets/meshes/Droid/RightArm.res"
 },
 "droid_44_I_Torus_006": {
@@ -95,7 +95,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://assets/meshes/Droid/Head.res"
 },
 "droid_44_I_Torus_018": {
@@ -103,7 +103,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://assets/meshes/Droid/LeftArm.res"
 }
 }

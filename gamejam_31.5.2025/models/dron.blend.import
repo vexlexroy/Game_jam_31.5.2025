@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b6gci3c61lvn0"
-path="res://.godot/imported/disk.blend-e7fea805a6f54864bb8f3f7624052494.scn"
+uid="uid://bs7hjobe6cs6m"
+path="res://.godot/imported/dron.blend-97ceb76d048850ca7c4a0a18d88fb8d3.scn"
 
 [deps]
 
-source_file="res://models/disk.blend"
-dest_files=["res://.godot/imported/disk.blend-e7fea805a6f54864bb8f3f7624052494.scn"]
+source_file="res://models/dron.blend"
+dest_files=["res://.godot/imported/dron.blend-97ceb76d048850ca7c4a0a18d88fb8d3.scn"]
 
 [params]
 
@@ -34,13 +34,21 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"disk_Cube_002": {
+"dron_Cube_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://meshes/Disk.res"
+"save_to_file/path": "res://meshes/Drone/Drone_Body.res"
+},
+"dron_Cube_005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://meshes/Drone/Drone_Prop0.res"
 }
 }
 }

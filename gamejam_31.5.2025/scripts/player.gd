@@ -78,5 +78,25 @@ func pick_up_evolution(level : int):
 			#%"UIConsole".reset_text(false, true);
 			log = %"TextLoader".load_text("res://text/fpv_comms.txt"); 
 			%"UIConsole".show_text_anim(log, false, false);
-		2: # red eye
+		2: # arms
+			%"InputHandler".enable_control(false);
+			await %"UI".close_anim(0.4);
+			# Log show
+			var log = %"TextLoader".load_text("res://text/arms_acq.txt"); 
+			await %"UIConsole".show_text_anim(log, false, false);
+			Visuals.find_child("RightArm").visible = has_arms;
+			Visuals.find_child("LeftArm").visible = has_arms;
+			has_arms = true;
+			await %"UI".open_anim(0.4);
+			%"InputHandler".enable_control(true);
+			# Log clear
+			await get_tree().create_timer(2).timeout
+			#%"UIConsole".reset_text(false, true);
+			log = %"TextLoader".load_text("res://text/arms_comms.txt"); 
+			%"UIConsole".show_text_anim(log, false, false);
+		3: # red eye
+			pass
+		4: # green eye
+			pass
+		5: # blue eye
 			pass

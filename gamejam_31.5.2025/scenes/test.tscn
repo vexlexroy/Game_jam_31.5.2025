@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ce1o02mg3orci"]
+[gd_scene load_steps=27 format=3 uid="uid://ce1o02mg3orci"]
 
 [ext_resource type="Script" uid="uid://dsak5lfdep61k" path="res://scripts/player.gd" id="1_errlg"]
 [ext_resource type="Script" uid="uid://clubnvrnjlkpi" path="res://scripts/input_handler.gd" id="1_iyx0m"]
@@ -8,9 +8,14 @@
 [ext_resource type="Script" uid="uid://gjbxnss1s7aa" path="res://scripts/textloader.gd" id="3_ajshl"]
 [ext_resource type="Texture2D" uid="uid://ttc0mljg6iox" path="res://images/Blank_black.png" id="4_74lek"]
 [ext_resource type="Script" uid="uid://d21eid4bwme2m" path="res://scripts/ui.gd" id="4_j5jx5"]
+[ext_resource type="ArrayMesh" uid="uid://dddx4yq5gnxir" path="res://assets/meshes/Droid/Body.res" id="6_ghpyy"]
+[ext_resource type="ArrayMesh" uid="uid://cyuac2ksio52w" path="res://assets/meshes/Droid/bottom.res" id="7_44saj"]
 [ext_resource type="Script" uid="uid://c55jwcd0v1hwc" path="res://scripts/collectible.gd" id="7_at5dv"]
 [ext_resource type="FontFile" uid="uid://cs8bja64fgrev" path="res://fonts/bahnschrift.ttf" id="7_jcd4p"]
 [ext_resource type="Script" uid="uid://dmx0lbs3c4s5y" path="res://scripts/ui_console.gd" id="7_uacia"]
+[ext_resource type="ArrayMesh" uid="uid://cmkhauhb610cn" path="res://assets/meshes/Droid/Head.res" id="8_7mbro"]
+[ext_resource type="ArrayMesh" uid="uid://c83h67inxdntb" path="res://assets/meshes/Droid/RightArm.res" id="9_7yos8"]
+[ext_resource type="ArrayMesh" uid="uid://kssgtqe1yypw" path="res://assets/meshes/Droid/LeftArm.res" id="10_5jxlq"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_errlg"]
 size = Vector2(100, 100)
@@ -102,6 +107,28 @@ enabled_cameras = Array[bool]([false, false, false, true, false])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_errlg")
+
+[node name="Mesh" type="Node3D" parent="Player"]
+
+[node name="Body" type="MeshInstance3D" parent="Player/Mesh"]
+mesh = ExtResource("6_ghpyy")
+
+[node name="Bottom" type="MeshInstance3D" parent="Player/Mesh"]
+mesh = ExtResource("7_44saj")
+
+[node name="Head" type="MeshInstance3D" parent="Player/Mesh"]
+mesh = ExtResource("8_7mbro")
+skeleton = NodePath("../Bottom")
+
+[node name="RightArm" type="MeshInstance3D" parent="Player/Mesh"]
+mesh = ExtResource("9_7yos8")
+skeleton = NodePath("../Head")
+
+[node name="LeftArm" type="MeshInstance3D" parent="Player/Mesh"]
+mesh = ExtResource("10_5jxlq")
+skeleton = NodePath("../RightArm")
+
+[node name="EyeMeshes" type="Node3D" parent="Player/Mesh"]
 
 [node name="Eyes" type="Node3D" parent="Player"]
 

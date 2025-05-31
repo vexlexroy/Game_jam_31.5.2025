@@ -1,6 +1,6 @@
 extends Node
 
-@export var skip_intro = true;
+@export var skip_intro = false;
 
 ### On start
 func _ready():

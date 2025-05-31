@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://by52fpe7grcjo"]
+
+[ext_resource type="ArrayMesh" uid="uid://bgm8aco4rwqne" path="res://assets/meshes/container-tall-1.res" id="1_r0bh0"]
+[ext_resource type="ArrayMesh" uid="uid://bpy3qllxjjkvw" path="res://assets/meshes/container-tall-2.res" id="2_rwabm"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p18gk"]
+points = PackedVector3Array(-0.5, 0.0999902, 0.249951, -0.450029, 0, 0.249951, -0.426782, 0.0999902, 0.426733, -0.5, 0.799922, 0.249951, -0.426782, 0.0999902, 0.0732185, -0.391445, 0, 0.108555, -0.391445, 0, 0.391396, -0.250049, 0.0999902, 0.5, -0.426782, 0.799922, 0.426733, -0.426782, 0.799922, 0.0732185, -0.450029, 0.9, 0.249951, -0.250049, 0.0999902, 0, -0.250049, 0, 0.0499706, -0.250049, 0, 0.44998, -0.108604, 0, 0.391396, -0.0732674, 0.0999902, 0.426733, -0.250049, 0.799922, 0.5, -0.391445, 0.9, 0.391396, -0.391445, 0.9, 0.108555, -0.250049, 0.9, 0.0499706, -0.250049, 0.799922, 0, -0.0732674, 0.0999902, 0.0732185, -0.108604, 0, 0.108555, -0.0500196, 0, 0.249951, 0, 0.0999902, 0.249951, -0.0732674, 0.799922, 0.426733, -0.108604, 0.9, 0.391396, -0.250049, 0.9, 0.44998, -0.108604, 0.9, 0.108555, -0.0732674, 0.799922, 0.0732185, 0, 0.799922, 0.249951, -0.0500196, 0.9, 0.249951)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a7rm4"]
+points = PackedVector3Array(-5.87404e-05, 0.2, -0.3, -0.212138, 0.2, -0.212138, -5.87404e-05, 0.699951, -0.3, 0.212079, 0.2, -0.212138, -0.212138, 0.699951, -0.212138, -0.3, 0.2, -5.87404e-05, 0.212079, 0.699951, -0.212138, 0.3, 0.2, -5.87404e-05, -0.3, 0.699951, -5.87404e-05, -0.212138, 0.2, 0.212079, 0.3, 0.699951, -5.87404e-05, 0.212079, 0.2, 0.212079, -0.212138, 0.699951, 0.212079, -5.87404e-05, 0.2, 0.3, 0.212079, 0.699951, 0.212079, -5.87404e-05, 0.699951, 0.3)
+
+[node name="Container-tall" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253404, 0, -0.245424)
+mesh = ExtResource("1_r0bh0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253404, 0, -0.245424)
+shape = SubResource("ConvexPolygonShape3D_p18gk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_rwabm")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_a7rm4")

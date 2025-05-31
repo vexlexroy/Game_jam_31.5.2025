@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://l2nivadlc4l7"]
+
+[ext_resource type="ArrayMesh" uid="uid://qq153pcckwnq" path="res://assets/meshes/chair_chair.res" id="1_4j0lu"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sdbrw"]
+points = PackedVector3Array(0.0999902, 0.0499608, 0.175, 0.15, 0.249966, 0.174966, -0.10002, 0.0499608, 0.175, 0.0999902, 0, 0.175, 0.15, 0.55, -0.0750294, -0.15, 0.249966, 0.174966, 0.15, 0.14999, 0.174966, -0.10002, 0, 0.175, 0.15, 0, 0.12498, -0.15, 0.55, -0.0750294, 0.15, 0.55, -0.175, -0.15, 0.14999, 0.174966, -0.15, 0, 0.12498, 0.15, 0, -0.0750294, -0.15, 0.55, -0.175, 0.15, 0.0999755, -0.125015, 0.0999902, 0, -0.125015, -0.15, 0, -0.0750294, -0.10002, 0, -0.125015, -0.15, 0.0999755, -0.125015)
+
+[node name="ChairChair" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4j0lu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_sdbrw")

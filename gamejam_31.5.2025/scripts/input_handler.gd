@@ -4,12 +4,12 @@ var control_active := false;
 var controlling_drone := true;
 
 func _input(event):
-	if (control_active):
-		# Focus/Unfocus input
-		if event is InputEventMouseButton:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		elif event.is_action_pressed("Escape"):
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	# Focus/Unfocus input
+	if event is InputEventMouseButton:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	elif event.is_action_pressed("Escape"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if (control_active):	
 		# Other
 		if event is InputEventKey:
 			process_key_input(event);

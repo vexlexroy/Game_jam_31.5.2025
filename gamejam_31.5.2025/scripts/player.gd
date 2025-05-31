@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var can_move := true;
-@export var acceleration : float = 20;
+@export var acceleration : float = 16;
 @export var deceleration : float = 10;
 @export var max_speed : float = 4.5;
 var cur_velocity := Vector3.ZERO;

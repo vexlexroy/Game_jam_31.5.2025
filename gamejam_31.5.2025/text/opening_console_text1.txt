@@ -1,20 +1,14 @@
 [BOOT] Successfully finished booting sequence
+<pause:1>
 
-
-[MICROPHONE] Sound detected...
-[MICROPHONE] Human voice recognized, transcribing...
+[MICROPHONE] Sound detected<3d:1.2>
+[MICROPHONE] Human voice recognized, transcribing<dots:3.2>
 [TRANSCRIBED CONVERSATION]
-MALE 1: As you can see sir, this is the newest version. We think it can successfully read information from the environment and print parts accordingly to its needs.
-MALE 2: Well, this version better work because we are running out of time. No more delays, run the simulation.
-FEMALE 1: Yes, sir!
-(Footsteps heard)
+[color=#ffffff]MALE 1: As you can see sir, this is the newest version.<pause:0.6> We think it can successfully read information from the environment and print parts accordingly to its needs.<pause:1>
+MALE 2: Well, this version better work because we are running out of time. <pause:0.4>No more delays, run the simulation.<pause:0.4>
+FEMALE 1: Yes, sir!<pause:0.8>
+(Footsteps heard)<pause:0.4>
 MALE 3: Sir! They are here!
-MALE 2: Already? Alright, cut the program and delete all evidence, we cannot let them get access to the program!
+MALE 2: Already? <pause:0.6>Alright, cut the program and delete all evidence, we cannot let them get access to the program!<pause:0.6>
 (Shots fired)
-
-
-
-
-
-
-
+[/color]<3d:5>

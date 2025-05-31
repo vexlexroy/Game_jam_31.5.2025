@@ -5,6 +5,8 @@ class_name PlayerCamera
 @export var type = 0;
 @export var rotation_parent : Node3D = null;
 
+@export var rotate_vertical = true;
+
 ## Get transform on start
 @onready var start_rotation = self.rotation;
 @onready var parent_start_rotation = rotation_parent.rotation if rotation_parent != null else null;
@@ -19,8 +21,9 @@ func look_input(relative):
 	match (type):
 		0: # First person
 			# Vertical
-			self.rotate_x(-relative.y * 0.01);
-			self.rotation.x = clamp(self.rotation.x, deg_to_rad(-80), deg_to_rad(80))
+			if (rotate_vertical):
+				self.rotate_x(-relative.y * 0.01);
+				self.rotation.x = clamp(self.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 			# Horizontal
 			rotation_parent.rotate_y(-relative.x * 0.01);
 		1: # Third person

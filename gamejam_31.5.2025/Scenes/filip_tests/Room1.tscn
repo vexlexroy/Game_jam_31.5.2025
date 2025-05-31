@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://4lnefg1xbstm"]
+
+[ext_resource type="PackedScene" uid="uid://dimutmmovnljc" path="res://assets/models/spacestation/GLB format/container-tall.glb" id="1_glc1g"]
+[ext_resource type="PackedScene" uid="uid://ctmagy5kfbwld" path="res://assets/models/spacestation/GLB format/container-wide.glb" id="2_he83p"]
+[ext_resource type="PackedScene" uid="uid://gcqn8wptkml1" path="res://assets/models/spacestation/GLB format/table-inset.glb" id="3_11v4r"]
+[ext_resource type="PackedScene" uid="uid://bno7qussd6h6y" path="res://assets/models/spacestation/GLB format/wall-switch.glb" id="4_d3ty3"]
+[ext_resource type="PackedScene" uid="uid://cra0gda4wnkbu" path="res://assets/models/spacestation/GLB format/container-flat.glb" id="5_mmd3b"]
+[ext_resource type="PackedScene" uid="uid://g7a08osdus6m" path="res://assets/models/spacestation/GLB format/chair-cushion.glb" id="6_rw38n"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2c8k8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_88rpb"]
+size = Vector3(9, 0.05, 7)
+
+[node name="Room1" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/StaticBody3D"]
+transform = Transform3D(4.5, 0, 0, 0, 1, 0, 0, 0, 3.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2c8k8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+shape = SubResource("BoxShape3D_88rpb")
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="container-tall2" parent="." instance=ExtResource("1_glc1g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92122, 0.0250001, -1.23073)
+
+[node name="container-wide2" parent="." instance=ExtResource("2_he83p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19372, 0.0272512, -1.78396)
+
+[node name="table-inset2" parent="." instance=ExtResource("3_11v4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41373, 0.313384, -3.10466)
+
+[node name="wall-switch2" parent="." instance=ExtResource("4_d3ty3")]
+transform = Transform3D(1, 0, 0, 0, 0.963163, 0.26892, 0, -0.26892, 0.963163, -1.43068, 0.107153, -2.78204)
+
+[node name="container-flat2" parent="." instance=ExtResource("5_mmd3b")]
+transform = Transform3D(0.919135, 0, 0.393942, 0, 1, 0, -0.393942, 0, 0.919135, -2.51501, 0.025, -0.911855)
+
+[node name="chair-cushion2" parent="." instance=ExtResource("6_rw38n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67751, 0.025, 1.92599)

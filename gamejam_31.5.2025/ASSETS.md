@@ -4,3 +4,7 @@ Terrain:
 
     Textures: AmbientCG
     Source: https://ambientcg.com
+
+Fonts:
+    Classic-Console-Neue-Font
+    https://fontesk.com/classic-console-neue-font/

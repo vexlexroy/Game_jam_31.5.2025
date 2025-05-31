@@ -1,0 +1,4 @@
+[A.P.] New usable data acquired, analyzing<3d:1.5>
+[A.P.] Registered data for effector, printing<dots:3> 
+[SYSTEM] New peripheral device detected, connecting<3d:1>
+[A.P.] New sensor successfully printed and integrated, new [color=#0000ff]ARMS[/color] are now available and ready to use.

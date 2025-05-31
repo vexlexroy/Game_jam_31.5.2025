@@ -9,6 +9,9 @@ class Sequence:
 	var text : String;
 	var delay : float;
 
+var is_printing = [false, false];
+var cancel_current_printing = [false, false];
+
 
 func _ready():
 	FullScreen.visible = false;
@@ -17,12 +20,14 @@ func _ready():
 func enable(value : bool):
 	self.visible = value;
 
-func reset_text(full : bool):
-	var screen : Control = FullScreen if full else SideScreen;
-	var rtl : RichTextLabel = screen.get_child(1).get_child(0);
-	rtl.visible_characters = 0; rtl.text = "";
+func reset_text(full : bool, check_printing : bool = false):
+	if (not check_printing or not is_printing[1 if full else 0]):
+		var screen : Control = FullScreen if full else SideScreen;
+		var rtl : RichTextLabel = screen.get_child(1).get_child(0);
+		rtl.visible_characters = 0; rtl.text = "";
 
-func append_text_anim(text : String, full : bool = false, delay : float = base_delay):
+func append_text_anim(text : String, full : bool = false, delay : float = base_delay, stream : bool = false):
+	if (not stream): is_printing[1 if full else 0] = true;
 	var screen : Control = FullScreen if full else SideScreen;
 	var rtl : RichTextLabel = screen.get_child(1).get_child(0);
 	#rtl.text += text;
@@ -46,19 +51,29 @@ func append_text_anim(text : String, full : bool = false, delay : float = base_d
 			rtl.visible_characters += 1;
 			rtl.text += text[i];
 		await get_tree().create_timer(delay).timeout
+		if (cancel_current_printing[1 if full else 0]):
+			is_printing[1 if full else 0] = false; return;
 		i += 1;
+	if (not stream): is_printing[1 if full else 0] = false;
 	return
 
 func show_text_anim(text : String, full : bool = false, erase_after : bool = false, delay : float = base_delay):
+	if (is_printing[1 if full else 0]):
+		cancel_current_printing[1 if full else 0] = true;
+		await get_tree().process_frame;
+		await not cancel_current_printing[1 if full else 0];
+		await not is_printing[1 if full else 0];
+	is_printing[1 if full else 0] = true;
 	reset_text(full);
 	var full_seq = decode_text(text, delay);
-	#for s in full_seq:
-		#print(s.text, " |  ",s.delay);
 	for seq in full_seq:
-		await append_text_anim(seq.text, full, seq.delay);
+		await append_text_anim(seq.text, full, seq.delay, true);
+		if (cancel_current_printing[1 if full else 0]):
+			cancel_current_printing[1 if full else 0] = false; return;
 	if (erase_after):
 		reset_text(full);
 		enable(false);
+	is_printing[1 if full else 0] = false;
 	return
 
 ### Markup rules

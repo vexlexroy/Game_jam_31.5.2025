@@ -3,4 +3,4 @@
 <pause:2>
 [COMMUNICATIONS] Incoming transmission
 Received:
-[color=#ffffff]There you go, it's a beautiful view up here, isn't it? <pause:1>I'll try to follow you, but I hope you at least still remember how to move around. <pause:1>It's the W, A, S and D commands, in case you forgot.<pause:10>[/color]
+[color=#ffffff]There you go, it's a beautiful view up here, isn't it? <pause:1>I'll try to follow you, but I hope you at least still remember how to move around. <pause:1>It's the [/color][color=#0000ff]W, A, S[/color][color=#ffffff] and [/color][color=#0000ff]D[/color][color=#ffffff] commands, in case you forgot.<pause:10>[/color]

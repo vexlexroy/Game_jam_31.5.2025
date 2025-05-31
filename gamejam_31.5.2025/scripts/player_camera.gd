@@ -38,13 +38,13 @@ func look_input(relative):
 
 func get_forward():
 	match (type):
-		0, 1: return self.get_global_transform_interpolated().basis.z;
+		0, 1: return rotation_parent.get_global_transform_interpolated().basis.z;
 		2: 
 			return rotation_parent.get_global_transform_interpolated().basis.z; #-self.get_global_transform_interpolated().basis.y;
 	return null;
 func get_right():
 	match (type):
-		0, 1: return self.get_global_transform_interpolated().basis.x;
+		0, 1: return rotation_parent.get_global_transform_interpolated().basis.x;
 		2: 
 			return rotation_parent.get_global_transform_interpolated().basis.x; #self.get_global_transform_interpolated().basis.x;
 	return null;

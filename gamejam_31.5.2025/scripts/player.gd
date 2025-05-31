@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var jumpStrength = 5;
 
 @export var player_cameras : Array[PlayerCamera];
+@export var enabled_cameras : Array[bool];
 var cur_cam_ind : int = 0;
 func current_camera() -> PlayerCamera: return player_cameras[cur_cam_ind];
 
@@ -55,7 +56,8 @@ func process_mouse_input(relative):
 	## Look
 	current_camera().look_input(relative);
 
-func _unhandled_input(event):
+func _input(event):
+	print("hello");
 	# Focus/Unfocus input
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -67,3 +69,11 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			process_mouse_input(event.relative);
+
+
+
+
+func _ready():
+	for i in range(len(enabled_cameras)):
+		if (enabled_cameras[i]): 
+			switch_camera(i); break;

@@ -15,6 +15,10 @@ run/main_scene="uid://ce1o02mg3orci"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+
 [input]
 
 Movement_Forward={

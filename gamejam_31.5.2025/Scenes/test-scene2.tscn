@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://dthac3lsfrvrp"]
 
-[ext_resource type="PackedScene" uid="uid://bccguiv73coyg" path="res://Scenes/test-scene.tscn" id="1_cmcip"]
+[ext_resource type="PackedScene" uid="uid://yi2kdxmvs3uf" path="res://Scenes/test-scene.tscn" id="1_cmcip"]
 [ext_resource type="Script" uid="uid://dehl15u4ukycd" path="res://scripts/test/color_evolution_test.gd" id="1_ogpgc"]
-[ext_resource type="Shader" uid="uid://cyc3fu7x3lcde" path="res://scripts/test/test-shader-2.gdshader" id="2_ogpgc"]
+[ext_resource type="Shader" uid="uid://c0jglem6irnn" path="res://scripts/test/vision-evolution.gdshader" id="2_ogpgc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogpgc"]
 shader = ExtResource("2_ogpgc")
-shader_parameter/size = Vector2(32, 28)
+shader_parameter/stage = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmcip"]
 albedo_color = Color(0.7, 0.6, 0.5, 1)

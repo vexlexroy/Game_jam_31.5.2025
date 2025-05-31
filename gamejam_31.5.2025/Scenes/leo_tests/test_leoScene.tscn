@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ovft5bt4w8kk"]
 
 [ext_resource type="Environment" uid="uid://cdo243nbaac8m" path="res://Scenes/leo_tests/environments/camera_post_process.tres" id="1_j8xad"]
-[ext_resource type="PackedScene" uid="uid://1si0g8rc5wvh" path="res://test_pizzle_rgb.glb" id="2_xodxo"]
+[ext_resource type="PackedScene" uid="uid://mc07ho4m6a4f" path="res://Scenes/leo_tests/test_pizzle_rgb.glb" id="2_xodxo"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xodxo"]
 
@@ -111,10 +111,14 @@ libraries = {
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.771114, 0.636698, 0, -0.636698, 0.771114, 0, 7.40976, 0)
 
-[node name="test_pizzle_rgb" parent="." instance=ExtResource("2_xodxo")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.11515, 0, 3.48978)
-
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.31986, 3.53015, 9.18066)
+layers = 31
+light_energy = 13.743
+light_volumetric_fog_energy = 1.457
+light_bake_mode = 1
 spot_range = 14.666
 spot_angle = 29.27
+
+[node name="test_pizzle_rgb" parent="." instance=ExtResource("2_xodxo")]
+transform = Transform3D(-0.488629, 0, -0.106029, 0, 0.5, 0, 0.106029, 0, -0.488629, 1.85778, 0, 1.90697)

@@ -64,9 +64,6 @@ func reset_velocity():
 func _physics_process(delta):
 	process_movement(delta);
 	
-	var forward_dir = -global_transform.basis.z.normalized()
-	var move_dir = cur_velocity.normalized()
-	var dot = forward_dir.dot(move_dir)  # Positive = forward, negative = back
 	var input_move_dir := Input.get_vector("Movement_Left", "Movement_Right", "Movement_Forward", "Movement_Backward")
 	var move_speed = cur_velocity.length()
 	if input_move_dir.y != 0 and move_speed > 0.01:

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsxvkgrv2rhrq"]
+
+[ext_resource type="ArrayMesh" uid="uid://c62g7uhkpsahv" path="res://assets/meshes/pipes/pipe_end.res" id="1_dspgt"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fqdnx"]
+points = PackedVector3Array(-3.3915e-05, 0.0999902, 0.2, 0.173205, 0.0999902, 0.0999608, 0.12319, 0.5, 0.0711042, -3.3915e-05, 0.5, 0.142247, -0.123224, 0.5, 0.0711042, -0.173205, 0.0999902, 0.0999608, -3.3915e-05, 0, 0.2, 0.173205, 0, 0.0999608, 0.173205, 0.0999902, -0.100039, 0.12319, 0.5, -0.0711433, -0.123224, 0.5, -0.0711433, -0.173205, 0.0999902, -0.100039, -0.173205, 0, 0.0999608, 0.173205, 0, -0.100039, -3.3915e-05, 0.0999902, -0.2, -3.3915e-05, 0.5, -0.142287, -0.173205, 0, -0.100039, -3.3915e-05, 0, -0.2)
+
+[node name="PipeEnd" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_dspgt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_fqdnx")

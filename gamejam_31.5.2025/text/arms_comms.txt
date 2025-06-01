@@ -1,2 +1,5 @@
+[SYSTEM] New peripheral device detected, connecting<3d:1>
+[A.P.] New sensor successfully printed and integrated, new [color=#0000ff]ARMS[/color] are now available and ready to use.
+<pause:3>
 [COMMUNICATIONS] Transmission received
 [color=#ffffff]You've found a new pair of arms!<pause:0.8> Now you'll be able to interact with the world in a meaningful way. <pause:10>

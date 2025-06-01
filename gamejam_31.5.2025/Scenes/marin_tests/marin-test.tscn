@@ -32,7 +32,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://cvl4ww6bowpua" path="res://animations/drone.res" id="30_5ujyq"]
 [ext_resource type="AudioStream" uid="uid://cpdrja6m5r0vp" path="res://audio/drone_final.wav" id="31_u381v"]
 [ext_resource type="Script" path="res://scripts/collectible.gd" id="32_dy0cl"]
-[ext_resource type="ArrayMesh" uid="uid://bjo6ug7p0asmq" path="res://meshes/Disk.res" id="33_eo3k5"]
+[ext_resource type="ArrayMesh" uid="uid://badio2laxu833" path="res://meshes/Disk.res" id="33_eo3k5"]
 [ext_resource type="PackedScene" uid="uid://qpu15wkka6n7" path="res://Scenes/marin_tests/printer.tscn" id="34_4cvbh"]
 [ext_resource type="PackedScene" uid="uid://uafupfyo45n6" path="res://Scenes/GreenEye.tscn" id="35_vf6t0"]
 

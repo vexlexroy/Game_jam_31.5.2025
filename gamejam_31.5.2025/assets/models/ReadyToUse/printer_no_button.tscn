@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcxh4w80vs8m4"]
+
+[ext_resource type="ArrayMesh" uid="uid://bulf02rbedpj1" path="res://assets/meshes/printer_no_button.res" id="1_niq5o"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dwktl"]
+points = PackedVector3Array(-0.520823, -0.3, -0.370711, -0.620711, -0.3, -0.270776, -0.550109, 0.1, -0.200015, -0.4501, 0.1, -0.300023, 0.52058, -0.3, -0.370711, -0.620711, -0.3, 0.27063, -0.550109, 0.1, 0.199943, 0.449979, 0.1, -0.300023, 0.620589, -0.3, -0.270776, -0.520823, -0.3, 0.370711, -0.4501, 0.1, 0.299951, 0.549988, 0.1, -0.200015, 0.620589, -0.3, 0.27063, 0.52058, -0.3, 0.370711, 0.449979, 0.1, 0.299951, 0.549988, 0.1, 0.199943)
+
+[node name="PrinterNoButton" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322, 0)
+mesh = ExtResource("1_niq5o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322, 0)
+shape = SubResource("ConvexPolygonShape3D_dwktl")

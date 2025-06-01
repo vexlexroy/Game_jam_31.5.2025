@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://17kxm3mkt36i"]
+[gd_scene load_steps=55 format=3 uid="uid://17kxm3mkt36i"]
 
 [ext_resource type="Script" uid="uid://dsak5lfdep61k" path="res://scripts/player.gd" id="1_errlg"]
 [ext_resource type="Script" uid="uid://clubnvrnjlkpi" path="res://scripts/input_handler.gd" id="1_iyx0m"]
@@ -53,6 +53,84 @@ data = PackedVector3Array(-1.2501, 0, 0.4999, -1.2901, 0, 0.7699, -1.2501, 0, 0.
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_errlg"]
 height = 1.0
+
+[sub_resource type="Animation" id="Animation_66mtb"]
+resource_name = "arm_jump"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parent/RightArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.69797e-08, -2.04051e-08, -1.00843), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Parent/LeftArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.325846, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.69797e-08, -2.04051e-08, -1.00843), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d83ya"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parent/RightArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Parent/LeftArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0ocgh"]
+resource_name = "arms_up"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parent/RightArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.407282, 0.857436, 1.24328, 1.77918, 2.42226),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-4.26575e-08, -3.41708e-08, 1.35076), Vector3(-3.76305e-08, -2.1471e-08, 1.037), Vector3(-4.31049e-08, -3.64548e-08, 1.40401), Vector3(-3.83644e-08, -2.27623e-08, 1.07099), Vector3(1.37454e-09, -2.1605e-11, -0.0314508)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ocgh"]
+_data = {
+&"RESET": SubResource("Animation_d83ya"),
+&"arm_jump": SubResource("Animation_66mtb"),
+&"arms_up": SubResource("Animation_0ocgh")
+}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lpvoh"]
 height = 1.0
@@ -309,12 +387,12 @@ mesh = ExtResource("8_7mbro")
 skeleton = NodePath("../Bottom")
 
 [node name="RightArm" type="MeshInstance3D" parent="Player/Mesh/Parent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.067, 1.318)
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -4.43172e-08, -0.0669999, 1.318)
 mesh = ExtResource("9_7yos8")
 skeleton = NodePath("../Head")
 
 [node name="LeftArm" type="MeshInstance3D" parent="Player/Mesh/Parent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.067, -1.318)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.43172e-08, -0.0669999, -1.318)
 mesh = ExtResource("10_5jxlq")
 skeleton = NodePath("../RightArm")
 
@@ -335,6 +413,11 @@ mesh = ExtResource("13_c6rvn")
 [node name="White" type="MeshInstance3D" parent="Player/Mesh/Parent/EyeMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603784, 1.38932, 0)
 mesh = ExtResource("12_xrtyr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Mesh"]
+libraries = {
+&"": SubResource("AnimationLibrary_0ocgh")
+}
 
 [node name="Eyes" type="Node3D" parent="Player"]
 

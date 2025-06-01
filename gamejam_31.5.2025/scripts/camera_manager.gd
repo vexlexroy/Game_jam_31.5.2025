@@ -12,4 +12,8 @@ func switch_camera(target_ind):
 		cur_cam_ind = target_ind;
 		(player_cameras[target_ind] as Camera3D).make_current();
 		%"InputHandler".controlling_drone = target_ind == 2;
+		if (target_ind == 2):
+			%"/Drone/AudioListener3D".make_current();
+		else:
+			%"Player/Eyes/Head/AudioListener3D".make_current();
 	

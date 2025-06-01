@@ -22,6 +22,14 @@ func _ready():
 	Visuals.find_child("RightArm").visible = has_arms;
 	Visuals.find_child("LeftArm").visible = has_arms;
 	# RGB
+	var stage = 0;
+	if (has_rgb[0]):
+		stage = 1;
+		if (has_rgb[1]):
+			stage = 2;
+			if (has_rgb[2]):
+				stage = 3;
+	((%"CanvasLayer".get_child(0) as ColorRect).material as ShaderMaterial).set_shader_parameter("stage", stage);
 	return
 
 ### _physics_process
@@ -36,6 +44,7 @@ func process_movement(delta):
 		if is_on_floor():
 			if can_jump and Input.is_action_just_pressed("Movement_Jump"):
 					gravity_vel -= get_gravity().normalized() * jumpStrength
+					$Mesh/AnimationPlayer.play("robot/robot_jump");
 			else:
 				var input_move_dir := Input.get_vector("Movement_Left", "Movement_Right", "Movement_Forward", "Movement_Backward")
 				var direction : Vector3 = (%"CameraManager".current_camera().get_forward() * input_move_dir.y) + (%"CameraManager".current_camera().get_right() * input_move_dir.x)
@@ -80,6 +89,7 @@ func pick_up_evolution(level : int):
 			%"CameraManager".switch_camera(0);
 			has_fpv = true;
 			await %"UI".open_anim(0.4);
+			%"UI".blur_in(4);
 			%"InputHandler".enable_control(true);
 			# Log clear
 			await get_tree().create_timer(2).timeout
@@ -115,7 +125,7 @@ func pick_up_evolution(level : int):
 			right_arm.material_override = null;
 			left_arm.material_override = null;
 			$"PrintAudio".stop();  # Stop sound
-			has_arms = true;
+			has_arms = true; can_jump = true;
 			await %"UI".open_anim(0.4);
 			%"InputHandler".enable_control(true);
 			# Log clear
@@ -135,6 +145,7 @@ func pick_up_evolution(level : int):
 			%"CameraManager".switch_camera(0);
 			has_rgb[0] = true;
 			await %"UI".open_anim(0.4);
+			%"UI".blur_in(4);
 			%"InputHandler".enable_control(true);
 			# Log clear
 			await get_tree().create_timer(2).timeout
@@ -149,10 +160,11 @@ func pick_up_evolution(level : int):
 			var log = %"TextLoader".load_text("res://text/green_acq.txt"); 
 			await %"UIConsole".show_text_anim(log, false, false);
 			$"PrintAudio".stop();  # Stop sound
-			((%"CanvasLayer".get_child(0) as ColorRect).material as ShaderMaterial).set_shader_parameter("stage", 1);
+			((%"CanvasLayer".get_child(0) as ColorRect).material as ShaderMaterial).set_shader_parameter("stage", 2);
 			%"CameraManager".switch_camera(0);
-			has_rgb[0] = true;
+			has_rgb[1] = true;
 			await %"UI".open_anim(0.4);
+			%"UI".blur_in(4);
 			%"InputHandler".enable_control(true);
 			# Log clear
 			await get_tree().create_timer(2).timeout

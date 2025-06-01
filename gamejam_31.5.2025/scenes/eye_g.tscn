@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://co3dknw6ng6lu"]
+
+[ext_resource type="Script" uid="uid://c55jwcd0v1hwc" path="res://scripts/collectible.gd" id="1_0bmhl"]
+[ext_resource type="ArrayMesh" uid="uid://bqdrdq7cejox6" path="res://assets/meshes/Droid/EyeG.res" id="2_ovbnr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iq7xp"]
+radius = 0.11
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lpvoh"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="EyeG" type="RigidBody3D"]
+script = ExtResource("1_0bmhl")
+level = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+mesh = ExtResource("2_ovbnr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_iq7xp")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_lpvoh")
+debug_color = Color(0.826898, 0.381134, 0.298799, 0.42)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

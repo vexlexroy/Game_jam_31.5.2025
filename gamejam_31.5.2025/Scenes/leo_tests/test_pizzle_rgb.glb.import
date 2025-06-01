@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://mc07ho4m6a4f"
-path="res://.godot/imported/test_pizzle_rgb.glb-67b6bd1445c2bc6030cf4ca378f33ff7.scn"
+path="res://.godot/imported/test_pizzle_rgb.glb-a3c4b1a134de9c293ae8b00240c2b1a3.scn"
 
 [deps]
 
-source_file="res://scenes/leo_tests/test_pizzle_rgb.glb"
-dest_files=["res://.godot/imported/test_pizzle_rgb.glb-67b6bd1445c2bc6030cf4ca378f33ff7.scn"]
+source_file="res://Scenes/leo_tests/test_pizzle_rgb.glb"
+dest_files=["res://.godot/imported/test_pizzle_rgb.glb-a3c4b1a134de9c293ae8b00240c2b1a3.scn"]
 
 [params]
 

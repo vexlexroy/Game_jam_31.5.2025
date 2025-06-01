@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://ce1o02mg3orci"]
+[gd_scene load_steps=51 format=3 uid="uid://17kxm3mkt36i"]
 
 [ext_resource type="Script" uid="uid://dsak5lfdep61k" path="res://scripts/player.gd" id="1_errlg"]
 [ext_resource type="Script" uid="uid://clubnvrnjlkpi" path="res://scripts/input_handler.gd" id="1_iyx0m"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://dwa4vp2e227ua" path="res://scripts/camera_manager.gd" id="4_si7kk"]
 [ext_resource type="Material" uid="uid://c7la7lfcej5o5" path="res://materials/floor0.tres" id="5_pn65j"]
 [ext_resource type="ArrayMesh" uid="uid://dddx4yq5gnxir" path="res://assets/meshes/Droid/Body.res" id="6_ghpyy"]
-[ext_resource type="ArrayMesh" uid="uid://btybx5owt6abf" path="res://assets/meshes/Droid/bottom.res" id="7_44saj"]
+[ext_resource type="ArrayMesh" uid="uid://btybx5owt6abf" path="res://assets/meshes/Droid/Bottom.res" id="7_44saj"]
 [ext_resource type="PackedScene" uid="uid://bj3fa3soodb1n" path="res://assets/models/ReadyToUse/display-wall-wide-cus.tscn" id="7_66mtb"]
 [ext_resource type="Script" uid="uid://c55jwcd0v1hwc" path="res://scripts/collectible.gd" id="7_at5dv"]
 [ext_resource type="FontFile" uid="uid://cs8bja64fgrev" path="res://fonts/bahnschrift.ttf" id="7_jcd4p"]
@@ -32,7 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://dcwqmr7a08ayq" path="res://audio/wrumwrum1_play.wav" id="18_2cnsr"]
 [ext_resource type="AudioStream" uid="uid://jbean4owgx64" path="res://audio/printer.wav" id="19_4k8fq"]
 [ext_resource type="AudioStream" uid="uid://lnlh0pn6vjsm" path="res://audio/theSoundTrack.wav" id="20_75pfo"]
-[ext_resource type="Script" uid="uid://dvufks30jpyqj" path="res://scripts/drone.gd" id="20_n74k2"]
+[ext_resource type="Script" path="res://scripts/drone.gd" id="20_n74k2"]
 [ext_resource type="Texture2D" uid="uid://bxskaa5bo76lx" path="res://images/Blank_rc_0_102_0_0.png" id="22_5f8cm"]
 [ext_resource type="AudioStream" uid="uid://c0p2vpvs11nlv" path="res://audio/robot_bip.wav" id="23_gsk6d"]
 [ext_resource type="ArrayMesh" uid="uid://m4oeievxpr6y" path="res://meshes/Drone/Drone_Body.res" id="24_gm488"]

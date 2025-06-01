@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dev4rkkrxcfoq"]
+
+[ext_resource type="Script" uid="uid://vjoxavu12w4t" path="res://scripts/webcam.gd" id="1_varne"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 1157.0
+offset_bottom = 651.0
+script = ExtResource("1_varne")
+
+[node name="TextureRect" type="TextureRect" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_right = 1158.0
+offset_bottom = 648.0

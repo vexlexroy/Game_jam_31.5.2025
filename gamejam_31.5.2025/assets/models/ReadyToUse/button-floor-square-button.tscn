@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cque8b6wjxuak"]
+
+[ext_resource type="ArrayMesh" uid="uid://b7dy5eoouyy8w" path="res://assets/meshes/button-floor-square-button.res" id="1_cjesp"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jy60m"]
+points = PackedVector3Array(-0.429297, 0.1, -0.45, -0.45, 0.1, -0.429297, -0.393442, 0.15, -0.410092, 0.429209, 0.1, -0.45, -0.45, 0.1, 0.429209, -0.410092, 0.15, -0.393442, 0.393354, 0.15, -0.410092, 0.45, 0.1, -0.429297, -0.429297, 0.1, 0.45, -0.410092, 0.15, 0.393354, 0.409916, 0.15, -0.393442, 0.45, 0.1, 0.429209, -0.393442, 0.15, 0.409916, 0.429209, 0.1, 0.45, 0.409916, 0.15, 0.393354, 0.393354, 0.15, 0.409916)
+
+[node name="Button-floor-square-button" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cjesp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_jy60m")

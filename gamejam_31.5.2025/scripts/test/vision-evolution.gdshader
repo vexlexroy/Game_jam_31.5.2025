@@ -20,5 +20,4 @@ void fragment() {
 		}
 		
         COLOR = vec4(result, 1);
-		COLOR = vec4(screen_color.r, screen_color.g, screen_color.b, 1);
 }

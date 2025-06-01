@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://maxi0qw2i2rn"]
+
+[ext_resource type="ArrayMesh" uid="uid://bqdrdq7cejox6" path="res://assets/meshes/Droid/EyeG.res" id="1_nhkhh"]
+
+[node name="EyeG" type="MeshInstance3D"]
+mesh = ExtResource("1_nhkhh")

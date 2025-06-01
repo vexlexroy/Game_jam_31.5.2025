@@ -5,6 +5,8 @@ extends Node
 
 ### On start
 func _ready():
+	# Spawn FPV Disk
+	spawn_fpv_disk();
 	for i in range(len(%"CameraManager".enabled_cameras)):
 		if (%"CameraManager".enabled_cameras[i]): 
 			%"CameraManager".switch_camera(i); break;
@@ -26,4 +28,14 @@ func _ready():
 		for o in %"TextLoader".opening_sequence_instructions:
 			var content = %"TextLoader".load_text(o);
 			await %"UIConsole".show_text_anim(content, false, true);
+	return
+
+func spawn_fpv_disk():
+	var choices = $Collectibles/FPVDisk_Spawns.get_children();
+	var spawn = choices.pick_random();
+	var disk = load("res://scenes/disk.tscn");
+	var instance = disk.instantiate()
+	instance.name = "FPVDisk"; instance.level = 1;
+	$Collectibles.add_child(instance)
+	instance.global_position = spawn.global_position;
 	return

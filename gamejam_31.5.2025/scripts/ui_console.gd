@@ -57,14 +57,14 @@ func append_text_anim(text : String, full : bool = false, delay : float = base_d
 	if (not stream): is_printing[1 if full else 0] = false;
 	return
 
-func show_text_anim(text : String, full : bool = false, erase_after : bool = false, delay : float = base_delay):
+func show_text_anim(text : String, full := false, erase_after := false, erase_before := true, delay : float = base_delay):
 	if (is_printing[1 if full else 0]):
 		cancel_current_printing[1 if full else 0] = true;
 		await get_tree().process_frame;
 		await not cancel_current_printing[1 if full else 0];
 		await not is_printing[1 if full else 0];
 	is_printing[1 if full else 0] = true;
-	reset_text(full);
+	if (erase_before): reset_text(full);
 	var full_seq = decode_text(text, delay);
 	for seq in full_seq:
 		await append_text_anim(seq.text, full, seq.delay, true);

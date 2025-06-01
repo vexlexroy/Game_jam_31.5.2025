@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ce1o02mg3orci"]
+[gd_scene load_steps=44 format=3 uid="uid://ce1o02mg3orci"]
 
 [ext_resource type="Script" uid="uid://dsak5lfdep61k" path="res://scripts/player.gd" id="1_errlg"]
 [ext_resource type="Script" uid="uid://clubnvrnjlkpi" path="res://scripts/input_handler.gd" id="1_iyx0m"]
@@ -10,18 +10,18 @@
 [ext_resource type="Script" uid="uid://d21eid4bwme2m" path="res://scripts/ui.gd" id="4_j5jx5"]
 [ext_resource type="Script" uid="uid://dwa4vp2e227ua" path="res://scripts/camera_manager.gd" id="4_si7kk"]
 [ext_resource type="Material" uid="uid://c7la7lfcej5o5" path="res://materials/floor0.tres" id="5_pn65j"]
-[ext_resource type="ArrayMesh" uid="uid://byy8g7e2jvl4g" path="res://assets/meshes/Droid/Body.res" id="6_ghpyy"]
+[ext_resource type="ArrayMesh" uid="uid://dddx4yq5gnxir" path="res://assets/meshes/Droid/Body.res" id="6_ghpyy"]
 [ext_resource type="ArrayMesh" uid="uid://btybx5owt6abf" path="res://assets/meshes/Droid/Bottom.res" id="7_44saj"]
 [ext_resource type="Script" uid="uid://c55jwcd0v1hwc" path="res://scripts/collectible.gd" id="7_at5dv"]
 [ext_resource type="FontFile" uid="uid://cs8bja64fgrev" path="res://fonts/bahnschrift.ttf" id="7_jcd4p"]
 [ext_resource type="Script" uid="uid://dmx0lbs3c4s5y" path="res://scripts/ui_console.gd" id="7_uacia"]
-[ext_resource type="ArrayMesh" uid="uid://b532b26gv7fi2" path="res://assets/meshes/Droid/Head.res" id="8_7mbro"]
-[ext_resource type="ArrayMesh" uid="uid://dx44rb58cw6uw" path="res://assets/meshes/Droid/RightArm.res" id="9_7yos8"]
-[ext_resource type="ArrayMesh" uid="uid://bt1afpkuy1wy1" path="res://assets/meshes/Droid/LeftArm.res" id="10_5jxlq"]
-[ext_resource type="ArrayMesh" uid="uid://cp538gprxm5em" path="res://assets/meshes/Droid/EyeR.res" id="11_5jxlq"]
-[ext_resource type="ArrayMesh" uid="uid://dqxva3wr77efs" path="res://assets/meshes/Droid/EyeG.res" id="12_daiq8"]
-[ext_resource type="ArrayMesh" uid="uid://dxqks36uef071" path="res://assets/meshes/Droid/EyeW.res" id="12_xrtyr"]
-[ext_resource type="ArrayMesh" uid="uid://neke1402136f" path="res://assets/meshes/Droid/EyeB.res" id="13_c6rvn"]
+[ext_resource type="ArrayMesh" uid="uid://cmkhauhb610cn" path="res://assets/meshes/Droid/Head.res" id="8_7mbro"]
+[ext_resource type="ArrayMesh" uid="uid://c83h67inxdntb" path="res://assets/meshes/Droid/RightArm.res" id="9_7yos8"]
+[ext_resource type="ArrayMesh" uid="uid://kssgtqe1yypw" path="res://assets/meshes/Droid/LeftArm.res" id="10_5jxlq"]
+[ext_resource type="ArrayMesh" uid="uid://yho70w2y2tm6" path="res://assets/meshes/Droid/EyeR.res" id="11_5jxlq"]
+[ext_resource type="ArrayMesh" uid="uid://bqdrdq7cejox6" path="res://assets/meshes/Droid/EyeG.res" id="12_daiq8"]
+[ext_resource type="ArrayMesh" uid="uid://dkbtdnav7ayd8" path="res://assets/meshes/Droid/EyeW.res" id="12_xrtyr"]
+[ext_resource type="ArrayMesh" uid="uid://c7e508rt6d12c" path="res://assets/meshes/Droid/EyeB.res" id="13_c6rvn"]
 [ext_resource type="AudioStream" uid="uid://dcwqmr7a08ayq" path="res://audio/wrumwrum1_play.wav" id="18_2cnsr"]
 [ext_resource type="AudioStream" uid="uid://jbean4owgx64" path="res://audio/printer.wav" id="19_4k8fq"]
 [ext_resource type="AudioStream" uid="uid://lnlh0pn6vjsm" path="res://audio/theSoundTrack.wav" id="20_75pfo"]
@@ -31,8 +31,9 @@
 [ext_resource type="ArrayMesh" uid="uid://m4oeievxpr6y" path="res://meshes/Drone/Drone_Body.res" id="24_gm488"]
 [ext_resource type="ArrayMesh" uid="uid://p8kgd0c42kya" path="res://meshes/Drone/Drone_Prop0.res" id="25_kay4s"]
 [ext_resource type="AnimationLibrary" uid="uid://cvl4ww6bowpua" path="res://animations/drone.res" id="26_1dqgb"]
-[ext_resource type="ArrayMesh" uid="uid://bg5gcv35evjrc" path="res://meshes/Disk.res" id="27_j7bvy"]
+[ext_resource type="ArrayMesh" uid="uid://badio2laxu833" path="res://meshes/Disk.res" id="27_j7bvy"]
 [ext_resource type="AudioStream" uid="uid://cpdrja6m5r0vp" path="res://audio/drone_final.wav" id="27_y81of"]
+[ext_resource type="PackedScene" uid="uid://buw5nwhd5kp62" path="res://scenes/disk.tscn" id="32_gv2t6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_errlg"]
 size = Vector2(50, 50)
@@ -209,8 +210,8 @@ script = ExtResource("3_ajshl")
 [node name="CameraManager" type="Node" parent="." node_paths=PackedStringArray("player_cameras")]
 unique_name_in_owner = true
 script = ExtResource("4_si7kk")
-player_cameras = [NodePath("../Player/Eyes/Head/FirstPersonPerspective"), NodePath("../Drone/TopDownHead/TopDownOrthogonal"), NodePath("../Player/Eyes/ThirdPersonEye/ThirdPersonPerspective")]
-enabled_cameras = Array[bool]([false, true, false])
+player_cameras = [NodePath("../Player/Eyes/Head/FirstPersonPerspective"), NodePath("../Drone/TopDownHead/TopDownOrthogonal"), NodePath("../Player/Eyes/ThirdPersonEye/TPHead/ThirdPersonPerspective")]
+enabled_cameras = Array[bool]([false, true, true])
 
 [node name="Environnment" type="Node3D" parent="."]
 
@@ -328,11 +329,13 @@ current = true
 
 [node name="ThirdPersonEye" type="Node3D" parent="Player/Eyes"]
 
-[node name="ThirdPersonPerspective" type="Camera3D" parent="Player/Eyes/ThirdPersonEye" node_paths=PackedStringArray("rotation_parent")]
+[node name="TPHead" type="Node3D" parent="Player/Eyes/ThirdPersonEye"]
+
+[node name="ThirdPersonPerspective" type="Camera3D" parent="Player/Eyes/ThirdPersonEye/TPHead" node_paths=PackedStringArray("rotation_parent")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.20491, 1.72383)
 script = ExtResource("2_bl13t")
 type = 1
-rotation_parent = NodePath("..")
+rotation_parent = NodePath("../..")
 
 [node name="TireAudio" type="AudioStreamPlayer3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.589022, 0)
@@ -550,23 +553,25 @@ transform = Transform3D(0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, -0.433
 
 [node name="Collectibles" type="Node" parent="."]
 
-[node name="FPV_Disk" type="RigidBody3D" parent="Collectibles"]
+[node name="FPVDisk_Spawns" type="Node" parent="Collectibles"]
+
+[node name="Spawn1" type="Node3D" parent="Collectibles/FPVDisk_Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.2, -13.5)
+
+[node name="Spawn2" type="Node3D" parent="Collectibles/FPVDisk_Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0.2, -6)
+
+[node name="Spawn3" type="Node3D" parent="Collectibles/FPVDisk_Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0.2, 9)
+
+[node name="Spawn4" type="Node3D" parent="Collectibles/FPVDisk_Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.2, 16.5)
+
+[node name="Spawn5" type="Node3D" parent="Collectibles/FPVDisk_Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0.2, -8.5)
+
+[node name="FPV_Disk" parent="Collectibles" instance=ExtResource("32_gv2t6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.077, 0.25, 0)
-script = ExtResource("7_at5dv")
-level = 1
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/FPV_Disk"]
-transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, -0.02, 0)
-mesh = ExtResource("27_j7bvy")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/FPV_Disk"]
-shape = SubResource("BoxShape3D_j7bvy")
-
-[node name="Area3D" type="Area3D" parent="Collectibles/FPV_Disk"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/FPV_Disk/Area3D"]
-shape = SubResource("BoxShape3D_lpvoh")
-debug_color = Color(0.826898, 0.381134, 0.298799, 0.42)
 
 [node name="Arms_Disk" type="RigidBody3D" parent="Collectibles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14364, 0.25, 0)
@@ -586,5 +591,4 @@ shape = SubResource("BoxShape3D_j7bvy")
 shape = SubResource("BoxShape3D_lpvoh")
 debug_color = Color(0.826898, 0.381134, 0.298799, 0.42)
 
-[connection signal="body_entered" from="Collectibles/FPV_Disk/Area3D" to="Collectibles/FPV_Disk" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Collectibles/Arms_Disk/Area3D" to="Collectibles/Arms_Disk" method="_on_area_3d_body_entered"]

@@ -29,7 +29,12 @@ func look_input(relative):
 				# Horizontal
 				rotation_parent.rotate_y(-relative.x * 0.01);
 			1: # Third person
-				pass
+				# Vertical
+				if (rotate_vertical):
+					$"..".rotate_x(relative.y * 0.01);
+					$"..".rotation.x = clamp($"..".rotation.x, deg_to_rad(-20), deg_to_rad(20))
+				# Horizontal
+				rotation_parent.rotate_y(-relative.x * 0.01);
 				#rotation_parent.global_rotate(Vector3.RIGHT, -relative.y * 0.01);
 				#rotation_parent.global_rotate(Vector3.UP, -relative.x * 0.01);
 			2: # Top down

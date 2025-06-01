@@ -31,7 +31,7 @@ func process_movement(delta):
 	if not is_on_floor():
 		gravity_vel += get_gravity() * delta
 	var decelerate := true;
-	if (can_move):
+	if (can_move and %"InputHandler".control_active):
 		if is_on_floor():
 			if can_jump and Input.is_action_just_pressed("Movement_Jump"):
 					gravity_vel -= get_gravity().normalized() * jumpStrength
@@ -87,14 +87,32 @@ func pick_up_evolution(level : int):
 			%"UIConsole".show_text_anim(log, false, false);
 		2: # arms
 			%"InputHandler".enable_control(false);
-			await %"UI".close_anim(0.4);
-			$"PrintAudio".play(0);  # Play sound
+			#await %"UI".close_anim(0.4);
+			look_down();
 			# Log show
 			var log = %"TextLoader".load_text("res://text/arms_acq.txt"); 
-			await %"UIConsole".show_text_anim(log, false, false);
+			await %"UIConsole".show_text_anim(log, false, false, false);
+			%"UIConsole".show_text_anim("[A.P.] Registered data for effector, printing<dots:3> ", false, false);
+			# Visual arm printing
+			$"PrintAudio".play(0);  # Play sound
+			var print_mat = load("res://materials/printing_mat.tres");
+			var right_arm : MeshInstance3D = Visuals.find_child("RightArm");
+			var left_arm : MeshInstance3D = Visuals.find_child("LeftArm");
+			right_arm.material_override = print_mat;
+			left_arm.material_override = print_mat;
+			right_arm.visible = true;
+			left_arm.visible = true;
+			# Print arms
+			var limit : float = 1.8;
+			while (limit > -0.2):
+				var delta = get_process_delta_time();
+				limit -= delta / 2;
+				(right_arm.get_active_material(0) as ShaderMaterial).set_shader_parameter("limit", limit);
+				(left_arm.get_active_material(0) as ShaderMaterial).set_shader_parameter("limit", limit);
+				await get_tree().process_frame;
+			right_arm.material_override = null;
+			left_arm.material_override = null;
 			$"PrintAudio".stop();  # Stop sound
-			Visuals.find_child("RightArm").visible = has_arms;
-			Visuals.find_child("LeftArm").visible = has_arms;
 			has_arms = true;
 			await %"UI".open_anim(0.4);
 			%"InputHandler".enable_control(true);
@@ -109,3 +127,14 @@ func pick_up_evolution(level : int):
 			pass
 		5: # blue eye
 			pass
+
+func look_down():
+	%"CameraManager".switch_camera(0);
+	var target_angle_x = -45;
+	var cur_angle_x = $Eyes/Head/FirstPersonPerspective.rotation_degrees.x;
+	while cur_angle_x != target_angle_x:
+		if (abs(target_angle_x - cur_angle_x) < 1): return;
+		$Eyes/Head/FirstPersonPerspective.rotation_degrees = lerp($Eyes/Head/FirstPersonPerspective.rotation_degrees, Vector3(target_angle_x, 0, 0), 0.2);
+		cur_angle_x = $Eyes/Head/FirstPersonPerspective.rotation_degrees.x;
+		await get_tree().process_frame;
+	return;

@@ -30,6 +30,15 @@ func blink(seconds):
 	await close_anim(seconds);
 	open_anim(seconds);
 
+func blur_in(duration : float):
+	var delta = duration;
+	while delta > 0:
+		delta -= get_process_delta_time();
+		var cur = Vector2(lerp(4.0, 32.0, delta / duration), lerp(3.5, 28.0, delta / duration));
+		((%"CanvasLayer2".get_child(0) as ColorRect).material as ShaderMaterial).set_shader_parameter("size", cur)
+		await get_tree().process_frame
+	((%"CanvasLayer2".get_child(0) as ColorRect).material as ShaderMaterial).set_shader_parameter("size", Vector2(4, 3.5))
+
 func _ready():
 	# Reset blink
 	Blink_Node.position.y = -1024; blink_start_pos_y = -1024;

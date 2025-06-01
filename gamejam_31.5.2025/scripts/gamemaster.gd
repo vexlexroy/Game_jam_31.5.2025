@@ -1,7 +1,7 @@
 extends Node
 
 @export var skip_intro = true;
-@export var skip_instructions = false;
+@export var skip_instructions = true;
 
 var spawn = null;
 

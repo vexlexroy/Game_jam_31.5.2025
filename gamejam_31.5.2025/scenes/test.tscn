@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://ce1o02mg3orci"]
+[gd_scene load_steps=71 format=3 uid="uid://ce1o02mg3orci"]
 
 [ext_resource type="Script" uid="uid://dsak5lfdep61k" path="res://scripts/player.gd" id="1_errlg"]
 [ext_resource type="Script" uid="uid://clubnvrnjlkpi" path="res://scripts/input_handler.gd" id="1_iyx0m"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ttc0mljg6iox" path="res://images/Blank_black.png" id="4_74lek"]
 [ext_resource type="Script" uid="uid://d21eid4bwme2m" path="res://scripts/ui.gd" id="4_j5jx5"]
 [ext_resource type="Script" uid="uid://dwa4vp2e227ua" path="res://scripts/camera_manager.gd" id="4_si7kk"]
+[ext_resource type="PackedScene" uid="uid://qpu15wkka6n7" path="res://scenes/marin_tests/printer.tscn" id="5_iq7xp"]
 [ext_resource type="Material" uid="uid://c7la7lfcej5o5" path="res://materials/floor0.tres" id="5_pn65j"]
 [ext_resource type="ArrayMesh" uid="uid://dddx4yq5gnxir" path="res://assets/meshes/Droid/Body.res" id="6_ghpyy"]
 [ext_resource type="ArrayMesh" uid="uid://btybx5owt6abf" path="res://assets/meshes/Droid/Bottom.res" id="7_44saj"]
@@ -27,6 +28,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bqdrdq7cejox6" path="res://assets/meshes/Droid/EyeG.res" id="12_daiq8"]
 [ext_resource type="ArrayMesh" uid="uid://dkbtdnav7ayd8" path="res://assets/meshes/Droid/EyeW.res" id="12_xrtyr"]
 [ext_resource type="ArrayMesh" uid="uid://c7e508rt6d12c" path="res://assets/meshes/Droid/EyeB.res" id="13_c6rvn"]
+[ext_resource type="PackedScene" uid="uid://co3dknw6ng6lu" path="res://scenes/eye_g.tscn" id="13_s6cx0"]
 [ext_resource type="AudioStream" uid="uid://dcwqmr7a08ayq" path="res://audio/wrumwrum1_play.wav" id="18_2cnsr"]
 [ext_resource type="AudioStream" uid="uid://jbean4owgx64" path="res://audio/printer.wav" id="19_4k8fq"]
 [ext_resource type="AudioStream" uid="uid://lnlh0pn6vjsm" path="res://audio/theSoundTrack.wav" id="20_75pfo"]
@@ -34,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://bxskaa5bo76lx" path="res://images/Blank_rc_0_102_0_0.png" id="22_5f8cm"]
 [ext_resource type="AudioStream" uid="uid://c0p2vpvs11nlv" path="res://audio/robot_bip.wav" id="23_gsk6d"]
 [ext_resource type="ArrayMesh" uid="uid://m4oeievxpr6y" path="res://meshes/Drone/Drone_Body.res" id="24_gm488"]
+[ext_resource type="AnimationLibrary" uid="uid://bu3m0qcl6eqcb" path="res://animations/robot.res" id="24_pdwa4"]
 [ext_resource type="ArrayMesh" uid="uid://p8kgd0c42kya" path="res://meshes/Drone/Drone_Prop0.res" id="25_kay4s"]
 [ext_resource type="AnimationLibrary" uid="uid://cvl4ww6bowpua" path="res://animations/drone.res" id="26_1dqgb"]
 [ext_resource type="ArrayMesh" uid="uid://badio2laxu833" path="res://meshes/Disk.res" id="27_j7bvy"]
@@ -42,6 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://c2c4dr2hcl7fc" path="res://assets/models/prototype/GLB format/indicator-square-b.glb" id="32_1xwo4"]
 [ext_resource type="PackedScene" uid="uid://ofbpdkaipv47" path="res://assets/models/prototype/GLB format/indicator-special-area.glb" id="33_5civd"]
 [ext_resource type="PackedScene" uid="uid://krp8o0el2cm" path="res://assets/models/prototype/GLB format/indicator-special-arrow.glb" id="33_mi64w"]
+[ext_resource type="Material" uid="uid://de48vhs1yrabg" path="res://materials/hexagon_blur.tres" id="38_emonu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_errlg"]
 size = Vector2(50, 50)
@@ -69,6 +73,80 @@ size = Vector3(0.6, 0.6, 1.5)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_errlg"]
 height = 1.0
+
+[sub_resource type="Animation" id="Animation_pdwa4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/Parent/RightArm:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/Parent/RightArm:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/Parent/RightArm:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Parent/LeftArm:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mesh/Parent/LeftArm:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mesh/Parent/LeftArm:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_335pd"]
+_data = {
+&"RESET": SubResource("Animation_pdwa4")
+}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lpvoh"]
 height = 1.0
@@ -220,10 +298,10 @@ radius = 0.9
 [sub_resource type="BoxShape3D" id="BoxShape3D_5civd"]
 size = Vector3(0.3, 3, 2.25)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_j7bvy"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_iq7xp"]
 size = Vector3(0.3, 0.06, 0.3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lpvoh"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_s6cx0"]
 size = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mi64w"]
@@ -231,6 +309,18 @@ size = Vector3(0.3, 0.06, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ds53i"]
 size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pdwa4"]
+
+[sub_resource type="Sky" id="Sky_335pd"]
+sky_material = SubResource("ProceduralSkyMaterial_pdwa4")
+radiance_size = 2
+
+[sub_resource type="Environment" id="Environment_pdwa4"]
+background_mode = 2
+sky = SubResource("Sky_335pd")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_335pd"]
 
 [node name="Test" type="Node3D"]
 script = ExtResource("1_yk7ts")
@@ -250,6 +340,11 @@ player_cameras = [NodePath("../Player/Eyes/Head/FirstPersonPerspective"), NodePa
 enabled_cameras = Array[bool]([false, true, true])
 
 [node name="Environnment" type="Node3D" parent="."]
+
+[node name="Printer" parent="Environnment" instance=ExtResource("5_iq7xp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.6219, 0, -17.7753)
+password = "782"
+printed_object = ExtResource("13_s6cx0")
 
 [node name="Floor" type="StaticBody3D" parent="Environnment"]
 
@@ -288,7 +383,6 @@ shape = SubResource("ConcavePolygonShape3D_ds53i")
 
 [node name="DroneMazeCeilling" type="StaticBody3D" parent="Environnment/DroneMaze"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5168, 15.6384, 18.867)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environnment/DroneMaze/DroneMazeCeilling"]
 mesh = SubResource("BoxMesh_mi64w")
@@ -315,14 +409,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.553, 0.5, 24.011)
 
 [node name="HallwayObjects" parent="Environnment" instance=ExtResource("11_q6ayx")]
 
+[node name="Printer2" parent="Environnment" instance=ExtResource("5_iq7xp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.0317, -9.53674e-07, -2.49759)
+printed_object = ExtResource("13_s6cx0")
+
 [node name="Player" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59405, 0)
 collision_layer = 3
 script = ExtResource("1_errlg")
-can_jump = true
-has_arms = true
-has_fpv = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 visible = false
@@ -349,12 +444,12 @@ mesh = ExtResource("8_7mbro")
 skeleton = NodePath("../Bottom")
 
 [node name="RightArm" type="MeshInstance3D" parent="Player/Mesh/Parent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.067, 1.318)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32718e-08, -0.0669999, 1.318)
 mesh = ExtResource("9_7yos8")
 skeleton = NodePath("../Head")
 
 [node name="LeftArm" type="MeshInstance3D" parent="Player/Mesh/Parent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.067, -1.318)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32718e-08, -0.0669999, -1.318)
 mesh = ExtResource("10_5jxlq")
 skeleton = NodePath("../RightArm")
 
@@ -375,6 +470,14 @@ mesh = ExtResource("13_c6rvn")
 [node name="White" type="MeshInstance3D" parent="Player/Mesh/Parent/EyeMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603784, 1.38932, 0)
 mesh = ExtResource("12_xrtyr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Mesh"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_335pd"),
+&"robot": ExtResource("24_pdwa4")
+}
+autoplay = "robot/robot_jump"
 
 [node name="Eyes" type="Node3D" parent="Player"]
 
@@ -444,7 +547,8 @@ script = ExtResource("20_n74k2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 
 [node name="TopDownOrthogonal" type="Camera3D" parent="Drone/TopDownHead" node_paths=PackedStringArray("rotation_parent")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
+cull_mask = 1048573
 projection = 1
 size = 16.0
 script = ExtResource("2_bl13t")
@@ -467,26 +571,31 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Body" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+layers = 2
 mesh = ExtResource("24_gm488")
 skeleton = NodePath("../..")
 
 [node name="Propeller0" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
 transform = Transform3D(-0.025, 0.0353553, -0.025, -0.0353553, -1.54543e-09, 0.0353553, 0.025, 0.0353553, 0.025, -0.625, 0.05, 0.624)
+layers = 2
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
 [node name="Propeller1" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
 transform = Transform3D(0.025, -0.0353553, 0.025, -0.0353553, -1.54543e-09, 0.0353553, -0.025, -0.0353553, -0.025, -0.625, 0.05, -0.624)
+layers = 2
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
 [node name="Propeller2" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
 transform = Transform3D(-0.025, -0.0353553, -0.025, -0.0353553, -1.54543e-09, 0.0353553, -0.025, 0.0353553, -0.025, 0.625, 0.05, 0.624)
+layers = 2
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
 [node name="Propeller3" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
 transform = Transform3D(-0.025, -0.0353553, -0.025, -0.0353553, -1.54543e-09, 0.0353553, -0.025, 0.0353553, -0.025, 0.625, 0.05, -0.625)
+layers = 2
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
@@ -698,14 +807,14 @@ transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, -0.02, 0)
 mesh = ExtResource("27_j7bvy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/FPV_Disk"]
-shape = SubResource("BoxShape3D_j7bvy")
+shape = SubResource("BoxShape3D_iq7xp")
 
 [node name="Area3D" type="Area3D" parent="Collectibles/FPV_Disk"]
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/FPV_Disk/Area3D"]
-shape = SubResource("BoxShape3D_lpvoh")
+shape = SubResource("BoxShape3D_s6cx0")
 debug_color = Color(0.826898, 0.381134, 0.298799, 0.42)
 
 [node name="Arms_Disk" type="RigidBody3D" parent="Collectibles"]
@@ -728,6 +837,26 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/Arms_Disk/Area3D"]
 shape = SubResource("BoxShape3D_ds53i")
 debug_color = Color(0.826898, 0.381134, 0.298799, 0.42)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+material = ExtResource("38_emonu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRectDrone" type="ColorRect" parent="CanvasLayer2"]
+visible = false
+material = ExtResource("38_emonu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -853,6 +982,10 @@ scroll_following = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI"]
 stream = ExtResource("23_gsk6d")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pdwa4")
+camera_attributes = SubResource("CameraAttributesPractical_335pd")
 
 [connection signal="body_entered" from="Environnment/DroneMaze/button-floor-square-small2/Area3D" to="Environnment/DroneMaze/button-floor-square-small2" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Collectibles/FPV_Disk/Area3D" to="Collectibles/FPV_Disk" method="_on_area_3d_body_entered"]

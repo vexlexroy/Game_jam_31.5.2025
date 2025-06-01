@@ -16,4 +16,6 @@ func switch_camera(target_ind):
 			%"Drone/AudioListener3D".make_current();
 		else:
 			%"Player/Eyes/Head/AudioListener3D".make_current();
+		%"CanvasLayer2".get_child(0).visible = target_ind != 1;
+		#%"CanvasLayer2".get_child(1).visible = target_ind == 1;
 	

@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://de48vhs1yrabg"]
+
+[ext_resource type="Shader" uid="uid://cyc3fu7x3lcde" path="res://scripts/test/test-shader-2.gdshader" id="1_0eo5q"]
+
+[resource]
+shader = ExtResource("1_0eo5q")
+shader_parameter/size = Vector2(4, 3.5)

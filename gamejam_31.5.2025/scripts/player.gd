@@ -15,6 +15,10 @@ var cur_velocity := Vector3.ZERO;
 @export var has_fpv = false;
 @export var has_rgb = [false, false, false];
 
+
+@onready var BottomWheel = $Mesh/Parent/Bottom
+var wheel_rotation_speed = 4.0  # tweak this for visual speed
+
 func _ready():
 	# FPV
 	%"CameraManager".enabled_cameras[0] = has_fpv;
@@ -60,10 +64,21 @@ func reset_velocity():
 
 func _physics_process(delta):
 	process_movement(delta);
+	
+	var input_move_dir := Input.get_vector("Movement_Left", "Movement_Right", "Movement_Forward", "Movement_Backward")
+	var move_speed = cur_velocity.length()
+	if input_move_dir.y != 0 and move_speed > 0.01:
+		var rotation_amount = input_move_dir.y * move_speed * wheel_rotation_speed * delta
+		BottomWheel.rotate_z(rotation_amount)
+	if input_move_dir.x != 0 and move_speed > 0.01:
+		var rotation_amount = input_move_dir.x * move_speed * wheel_rotation_speed * delta
+		BottomWheel.rotate_x(rotation_amount)
 
 func _process(delta):
 	## Constantly rotate mesh based on look
 	$"Mesh".rotation.y = %"CameraManager".current_camera().rotation_parent.rotation.y;
+	
+	
 
 ### Other
 func pick_up_evolution(level : int):

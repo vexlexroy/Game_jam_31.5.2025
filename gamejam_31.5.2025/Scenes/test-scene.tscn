@@ -11,7 +11,7 @@ noise = SubResource("FastNoiseLite_cjygo")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lu4tt"]
 render_priority = 0
 shader = ExtResource("2_cjygo")
-shader_parameter/limit = 0.335
+shader_parameter/limit = 0.22
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_lu4tt")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hkptj"]

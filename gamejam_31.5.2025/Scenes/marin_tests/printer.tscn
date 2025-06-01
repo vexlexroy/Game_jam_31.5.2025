@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://qpu15wkka6n7"]
+
+[ext_resource type="Script" uid="uid://yubdbh5fihxb" path="res://scripts/printer.gd" id="1_ng8pi"]
+[ext_resource type="PackedScene" uid="uid://d126deua84woh" path="res://assets/models/ReadyToUse/table-printer-v1.tscn" id="2_x8cll"]
+[ext_resource type="Script" uid="uid://65fvmtq3e0q" path="res://scripts/password_check.gd" id="3_x8cll"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_log7h"]
+
+[node name="Printer" type="Node3D"]
+script = ExtResource("1_ng8pi")
+
+[node name="Table-printer-v1" parent="." instance=ExtResource("2_x8cll")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0248985, -0.036278, -0.00104237)
+
+[node name="InteractArea" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(2.09, 0, 0, 0, 2.09, 0, 0, 0, 2.09, 0, 0, 0)
+shape = SubResource("BoxShape3D_log7h")
+
+[node name="PasswordPopup" type="Popup" parent="."]
+auto_translate_mode = 1
+script = ExtResource("3_x8cll")
+
+[node name="LineEdit" type="LineEdit" parent="PasswordPopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.2813
+offset_top = -15.5
+offset_right = 43.2813
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "type password"
+alignment = 1
+max_length = 3
+
+[connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
+[connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
+[connection signal="text_submitted" from="PasswordPopup/LineEdit" to="PasswordPopup" method="_on_line_edit_text_submitted"]

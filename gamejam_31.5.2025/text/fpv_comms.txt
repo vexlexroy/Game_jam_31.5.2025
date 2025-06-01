@@ -1,0 +1,2 @@
+[COMMUNICATIONS] Transmission received
+[color=#ffffff]You've finally acquired your own vision!<pause:0.8> If you still wish to see the world from my beautiful point of view you can change to my video stream by pressing the [/color][color=#0000ff]2[/color][color=#ffffff] key.[/color]<pause:10>

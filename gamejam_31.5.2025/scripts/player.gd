@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var can_move := true;
-@export var acceleration : float = 20;
+@export var acceleration : float = 16;
 @export var deceleration : float = 10;
 @export var max_speed : float = 4.5;
 var cur_velocity := Vector3.ZERO;
@@ -9,6 +9,20 @@ var cur_velocity := Vector3.ZERO;
 @export var can_jump : bool = false;
 @export var jumpStrength = 5;
 
+### Parts
+@onready var Visuals = $Mesh/Parent;
+@export var has_arms = false;
+@export var has_fpv = false;
+@export var has_rgb = [false, false, false];
+
+func _ready():
+	# FPV
+	#%"CameraManager".enabled_cameras[0] = has_fpv;
+	# Arms
+	Visuals.find_child("RightArm").visible = has_arms;
+	Visuals.find_child("LeftArm").visible = has_arms;
+	# RGB
+	return
 
 ### _physics_process
 func process_movement(delta):
@@ -35,6 +49,11 @@ func process_movement(delta):
 	#print(velocity.length());
 	#var pre_slide_vel = velocity;
 	move_and_slide()
+	# Audio
+	if (cur_velocity.length_squared() > 0.5):
+		if (not $"TireAudio".playing): $"TireAudio".play(0);
+	else:
+		if ($"TireAudio".playing): $"TireAudio".stop();
 func reset_velocity():
 	cur_velocity = Vector3.ZERO; velocity = Vector3.ZERO;
 
@@ -51,10 +70,42 @@ func pick_up_evolution(level : int):
 		1:  # fpv eye
 			%"InputHandler".enable_control(false);
 			await %"UI".close_anim(0.4);
+			$"PrintAudio".play(0);  # Play sound
+			# Log show
+			var log = %"TextLoader".load_text("res://text/fpv_acq.txt"); 
+			await %"UIConsole".show_text_anim(log, false, false);
+			$"PrintAudio".stop();  # Stop sound
 			%"CameraManager".enabled_cameras[0] = true;
 			%"CameraManager".switch_camera(0);
-			await get_tree().create_timer(1.0).timeout
+			has_fpv = true;
 			await %"UI".open_anim(0.4);
 			%"InputHandler".enable_control(true);
-		2: # red eye
+			# Log clear
+			await get_tree().create_timer(2).timeout
+			#%"UIConsole".reset_text(false, true);
+			log = %"TextLoader".load_text("res://text/fpv_comms.txt"); 
+			%"UIConsole".show_text_anim(log, false, false);
+		2: # arms
+			%"InputHandler".enable_control(false);
+			await %"UI".close_anim(0.4);
+			$"PrintAudio".play(0);  # Play sound
+			# Log show
+			var log = %"TextLoader".load_text("res://text/arms_acq.txt"); 
+			await %"UIConsole".show_text_anim(log, false, false);
+			$"PrintAudio".stop();  # Stop sound
+			Visuals.find_child("RightArm").visible = has_arms;
+			Visuals.find_child("LeftArm").visible = has_arms;
+			has_arms = true;
+			await %"UI".open_anim(0.4);
+			%"InputHandler".enable_control(true);
+			# Log clear
+			await get_tree().create_timer(2).timeout
+			#%"UIConsole".reset_text(false, true);
+			log = %"TextLoader".load_text("res://text/arms_comms.txt"); 
+			%"UIConsole".show_text_anim(log, false, false);
+		3: # red eye
+			pass
+		4: # green eye
+			pass
+		5: # blue eye
 			pass

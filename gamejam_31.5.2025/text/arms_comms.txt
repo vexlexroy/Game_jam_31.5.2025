@@ -1,0 +1,2 @@
+[COMMUNICATIONS] Transmission received
+[color=#ffffff]You've found a new pair of arms!<pause:0.8> Now you'll be able to interact with the world in a meaningful way. <pause:10>

@@ -5,21 +5,16 @@ Initializing Control System<dots:1.5> STABLE
 
 [CHECK] Checking sensors<3d:0.5>
 [CHECK] Checking visual sensors<3d:0.5>
-Sensor A (Infrared)... OFFLINE
-Sensor B (Ultrasonic)... OFFLINE
+Sensor A (Infrared)<3d:0.5> OFFLINE
+Sensor B (Ultrasonic)<3d:0.5> OFFLINE
 
 [CHECK] RGB Camera Channels:
-   • Red… OFFLINE
-   • Green… OFFLINE
-   • Blue… OFFLINE
-[CHECK] Effector: Left Arm... OFFLINE
-[CHECK] Effector: Right Arm... OFFLINE
-[CHECK] Effector: Left Leg... OFFLINE
-[CHECK] Effector: Right Leg... OFFLINE
-[STATUS] Control System is ACTIVE. All sensors/actuators are currently offline/malfunctioning.
-
-
-
-
-
-
+   • [color=#ff0000]Red[/color]<3d:0.5> OFFLINE
+   • [color=#00ff00]Green[/color]<3d:0.5> OFFLINE
+   • [color=#0000ff]Blue[/color]<3d:0.5> OFFLINE
+[CHECK] Effector: Left Arm<3d:0.4> OFFLINE
+[CHECK] Effector: Right Arm<3d:0.4> OFFLINE
+[CHECK] Effector: Left Leg<3d:0.4> OFFLINE
+[CHECK] Effector: Right Leg<3d:0.4> OFFLINE
+[STATUS] Control System is [color=#00ff00]ACTIVE[/color]. All sensors/actuators are currently [color=#ff0000]OFFLINE/MALFUNCTIONING[/color].
+<3d:2>

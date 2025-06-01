@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b53p0ka8d4len"]
+
+[ext_resource type="ArrayMesh" uid="uid://5434whc146nf" path="res://assets/meshes/pipes/pipe_ring_color.res" id="1_ds7ts"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3od4s"]
+points = PackedVector3Array(-3.3915e-05, 0.299971, 0.2, 0.173205, 0.299971, 0.0999608, 0.12319, 0.5, 0.0711042, -3.3915e-05, 0.5, 0.142247, -0.123224, 0.5, 0.0711042, -0.173205, 0.299971, 0.0999608, -3.3915e-05, 0.19998, 0.2, 0.173205, 0.19998, 0.0999608, 0.173205, 0.299971, -0.100039, 0.12319, 0.5, -0.0711433, -0.123224, 0.5, -0.0711433, -0.173205, 0.299971, -0.100039, -0.173205, 0.19998, 0.0999608, -0.123224, 0, 0.0711042, -3.3915e-05, 0, 0.142247, 0.12319, 0, 0.0711042, 0.173205, 0.19998, -0.100039, -3.3915e-05, 0.299971, -0.2, -3.3915e-05, 0.5, -0.142287, -0.173205, 0.19998, -0.100039, -0.123224, 0, -0.0711433, 0.12319, 0, -0.0711433, -3.3915e-05, 0, -0.142287, -3.3915e-05, 0.19998, -0.2)
+
+[node name="PipeRingColor" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ds7ts")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_3od4s")

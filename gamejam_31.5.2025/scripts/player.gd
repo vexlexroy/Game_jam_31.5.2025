@@ -23,7 +23,7 @@ var wheel_rotation_speed = 4.0  # tweak this for visual speed
 
 func _ready():
 	# FPV
-	#%"CameraManager".enabled_cameras[0] = has_fpv;
+	%"CameraManager".enabled_cameras[0] = has_fpv;
 	# Arms
 	Visuals.find_child("RightArm").visible = has_arms;
 	Visuals.find_child("LeftArm").visible = has_arms;
@@ -37,6 +37,7 @@ func process_movement(delta):
 	if not is_on_floor():
 		gravity_vel += get_gravity() * delta
 	var decelerate := true;
+	var frame_start_velocity = cur_velocity;
 	if (can_move and %"InputHandler".control_active):
 		if is_on_floor():
 			if can_jump and Input.is_action_just_pressed("Movement_Jump") and has_arms:
@@ -50,10 +51,10 @@ func process_movement(delta):
 					if (cur_velocity.length() > max_speed):
 						cur_velocity = cur_velocity * (max_speed / cur_velocity.length());
 					decelerate = false;
-	if (decelerate):
-		cur_velocity = cur_velocity.lerp(Vector3.ZERO, deceleration * delta);
-	velocity = cur_velocity + gravity_vel;
-	#print(velocity.length());
+			if (decelerate):
+				cur_velocity = cur_velocity.lerp(Vector3.ZERO, deceleration * delta);
+				if (cur_velocity.length() < 0.1): cur_velocity = Vector3.ZERO;
+	velocity = Vector3(cur_velocity.x, velocity.y + gravity_vel.y, cur_velocity.z);
 	#var pre_slide_vel = velocity;
 	move_and_slide()
 	# Audio
@@ -112,6 +113,7 @@ func pick_up_evolution(level : int):
 			#%"UIConsole".reset_text(false, true);
 			log = %"TextLoader".load_text("res://text/fpv_comms.txt"); 
 			%"UIConsole".show_text_anim(log, false, false);
+			get_tree().current_scene.spawn_arms_disk();
 		2: # arms
 			%"InputHandler".enable_control(false);
 			#await %"UI".close_anim(0.4);

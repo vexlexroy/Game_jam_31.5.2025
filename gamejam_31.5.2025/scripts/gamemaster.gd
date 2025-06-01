@@ -3,6 +3,8 @@ extends Node
 @export var skip_intro = true;
 @export var skip_instructions = false;
 
+var spawn = null;
+
 ### On start
 func _ready():
 	# Spawn FPV Disk
@@ -31,11 +33,25 @@ func _ready():
 	return
 
 func spawn_fpv_disk():
-	var choices = $Collectibles/FPVDisk_Spawns.get_children();
-	var spawn = choices.pick_random();
+	# Choose variation
+	var choices = $Collectibles/SpawnVariations.get_children();
+	spawn = choices.pick_random();
+	for i in range(len(choices)):
+		if choices[i] != spawn:
+			choices[i].queue_free();
+	# Load fpv disk
 	var disk = load("res://scenes/disk.tscn");
 	var instance = disk.instantiate()
 	instance.name = "FPVDisk"; instance.level = 1;
 	$Collectibles.add_child(instance)
 	instance.global_position = spawn.global_position;
 	return
+func spawn_arms_disk():
+	# Disable point2 collider
+	spawn.get_node("Point2").get_node("Block").queue_free();
+	# Load arms disk
+	var disk = load("res://scenes/disk.tscn");
+	var instance = disk.instantiate()
+	instance.name = "ArmsDisk"; instance.level = 2;
+	$Collectibles.add_child(instance)
+	instance.global_position = spawn.get_node("Point2").global_position;

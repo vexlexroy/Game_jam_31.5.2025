@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://6u54mljdoani"]
+
+[ext_resource type="PackedScene" uid="uid://cr605sdmwrirr" path="res://models/DRON_MAZE.blend" id="1_5cf1r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epukl"]
+albedo_color = Color(0.325441, 0.325441, 0.325441, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bg5m0"]
+material = SubResource("StandardMaterial3D_epukl")
+
+[node name="Drone_Maze_Group" type="Node3D"]
+
+[node name="DRON_MAZE" parent="." instance=ExtResource("1_5cf1r")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -11.5623, 5.13101, 19.1919)
+
+[node name="DRON_MAZE2" parent="." instance=ExtResource("1_5cf1r")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -11.5623, 8.0836, 19.1919)
+
+[node name="DRON_MAZE3" parent="." instance=ExtResource("1_5cf1r")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -11.5623, 11.0555, 19.1919)
+
+[node name="Roof" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Roof"]
+transform = Transform3D(19, 0, 0, 0, 0.25, 0, 0, 0, 13, -12.1313, 12.4856, 19.1148)
+mesh = SubResource("BoxMesh_bg5m0")

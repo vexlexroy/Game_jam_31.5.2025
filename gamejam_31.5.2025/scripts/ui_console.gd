@@ -65,6 +65,7 @@ func show_text_anim(text : String, full := false, erase_after := false, erase_be
 		await not is_printing[1 if full else 0];
 	is_printing[1 if full else 0] = true;
 	if (erase_before): reset_text(full);
+	enable(true);
 	var full_seq = decode_text(text, delay);
 	for seq in full_seq:
 		await append_text_anim(seq.text, full, seq.delay, true);

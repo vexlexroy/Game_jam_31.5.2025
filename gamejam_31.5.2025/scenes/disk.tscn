@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://badio2laxu833" path="res://meshes/Disk.res" id="2_t7ru2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j7bvy"]
-size = Vector3(0.3, 0.06, 0.3)
+size = Vector3(0.3, 0.1, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lpvoh"]
 size = Vector3(0.25, 0.25, 0.25)

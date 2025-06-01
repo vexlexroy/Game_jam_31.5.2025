@@ -49,6 +49,11 @@ func process_movement(delta):
 	#print(velocity.length());
 	#var pre_slide_vel = velocity;
 	move_and_slide()
+	# Audio
+	if (cur_velocity.length_squared() > 0.5):
+		if (not $"TireAudio".playing): $"TireAudio".play(0);
+	else:
+		if ($"TireAudio".playing): $"TireAudio".stop();
 func reset_velocity():
 	cur_velocity = Vector3.ZERO; velocity = Vector3.ZERO;
 
@@ -65,9 +70,11 @@ func pick_up_evolution(level : int):
 		1:  # fpv eye
 			%"InputHandler".enable_control(false);
 			await %"UI".close_anim(0.4);
+			$"PrintAudio".play(0);  # Play sound
 			# Log show
 			var log = %"TextLoader".load_text("res://text/fpv_acq.txt"); 
 			await %"UIConsole".show_text_anim(log, false, false);
+			$"PrintAudio".stop();  # Stop sound
 			%"CameraManager".enabled_cameras[0] = true;
 			%"CameraManager".switch_camera(0);
 			has_fpv = true;
@@ -81,9 +88,11 @@ func pick_up_evolution(level : int):
 		2: # arms
 			%"InputHandler".enable_control(false);
 			await %"UI".close_anim(0.4);
+			$"PrintAudio".play(0);  # Play sound
 			# Log show
 			var log = %"TextLoader".load_text("res://text/arms_acq.txt"); 
 			await %"UIConsole".show_text_anim(log, false, false);
+			$"PrintAudio".stop();  # Stop sound
 			Visuals.find_child("RightArm").visible = has_arms;
 			Visuals.find_child("LeftArm").visible = has_arms;
 			has_arms = true;

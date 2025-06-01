@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://2b1ws88prokk"
+uid="uid://lnlh0pn6vjsm"
 path="res://.godot/imported/theSoundTrack.wav-1fbe6eec8cae59463a56372a519bffcf.sample"
 
 [deps]
@@ -17,8 +17,8 @@ force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
-edit/normalize=false
-edit/loop_mode=0
+edit/normalize=true
+edit/loop_mode=2
 edit/loop_begin=0
-edit/loop_end=-1
+edit/loop_end=815616
 compress/mode=2

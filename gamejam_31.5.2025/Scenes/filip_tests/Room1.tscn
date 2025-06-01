@@ -40,7 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41373, 0.313384, -3.10466)
 transform = Transform3D(1, 0, 0, 0, 0.963163, 0.26892, 0, -0.26892, 0.963163, -1.43068, 0.107153, -2.78204)
 
 [node name="container-flat2" parent="." instance=ExtResource("5_mmd3b")]
-transform = Transform3D(0.919135, 0, 0.393942, 0, 1, 0, -0.393942, 0, 0.919135, -2.51501, 0.025, -0.911855)
+transform = Transform3D(0.919135, 0, 0.393942, 0, 1, 0, -0.393942, 0, 0.919135, 0.356658, 0.025, 1.66776)
 
 [node name="chair-cushion2" parent="." instance=ExtResource("6_rw38n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67751, 0.025, 1.92599)

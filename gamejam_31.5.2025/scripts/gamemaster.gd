@@ -18,6 +18,8 @@ func _ready():
 	# Open eyes
 	await %"UI".open_anim(0.4);
 	%"InputHandler".control_active = true;
+	# Start game -> start soundtrack
+	%"Player/SoundtrackAudio".play(0);
 	# Instructions
 	if (not skip_instructions):
 		await get_tree().create_timer(2).timeout

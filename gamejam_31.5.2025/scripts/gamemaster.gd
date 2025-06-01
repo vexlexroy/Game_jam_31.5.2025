@@ -9,6 +9,7 @@ var spawn = null;
 func _ready():
 	# Spawn FPV Disk
 	spawn_fpv_disk();
+	spawn_red_disk()
 	for i in range(len(%"CameraManager".enabled_cameras)):
 		if (%"CameraManager".enabled_cameras[i]): 
 			%"CameraManager".switch_camera(i); break;
@@ -55,3 +56,11 @@ func spawn_arms_disk():
 	instance.name = "ArmsDisk"; instance.level = 2;
 	$Collectibles.add_child(instance)
 	instance.global_position = spawn.get_node("Point2").global_position;
+func spawn_red_disk():
+	# Load red disk
+	var disk = load("res://scenes/disk.tscn");
+	var instance : RigidBody3D = disk.instantiate()
+	instance.name = "RedDisk"; instance.level = 3;
+	$Collectibles.add_child(instance)
+	instance.global_position = $Environnment/DroneMaze/RedDiskSpawnPoint.global_position;
+	instance.apply_impulse(Vector3(-2, 2, 0));

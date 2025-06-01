@@ -2,4 +2,4 @@
 [A.P.] New sensor successfully printed and integrated, new [color=#0000ff]ARMS[/color] are now available and ready to use.
 <pause:3>
 [COMMUNICATIONS] Transmission received
-[color=#ffffff]You've found a new pair of arms!<pause:0.8> Now you'll be able to interact with the world in a meaningful way. <pause:10>
+[color=#ffffff]You've found a new pair of arms!<pause:0.8> Now you'll be able to interact with the world in a meaningful way. <pause:2>Now head on to the lower left corner of the map to get your first color! <pause:2> Sadly there's some utility vents above it so you'll have to help me get through it. <pause:3>Don't worry if you are disoriented, I'll mark it for you.<pause:10>

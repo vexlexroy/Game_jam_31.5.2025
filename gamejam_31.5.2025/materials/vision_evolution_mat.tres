@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cts2c17ls7q5w"]
+
+[ext_resource type="Shader" uid="uid://c0jglem6irnn" path="res://scripts/test/vision-evolution.gdshader" id="1_xexw0"]
+
+[resource]
+shader = ExtResource("1_xexw0")
+shader_parameter/stage = 0

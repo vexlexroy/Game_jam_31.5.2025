@@ -6,20 +6,14 @@ extends CharacterBody3D
 @export var max_speed : float = 4.5;
 var cur_velocity := Vector3.ZERO;
 
-@export var can_jump : bool = true;
-@export var jumpStrength = 20;
+@export var can_jump : bool = false;
+@export var jumpStrength = 5;
 
 ### Parts
 @onready var Visuals = $Mesh/Parent;
 @export var has_arms = false;
 @export var has_fpv = false;
 @export var has_rgb = [false, false, false];
-
-
-@onready var BottomWheel = $Mesh/Parent/Bottom
-var wheel_rotation_speed = 4.0  # tweak this for visual speed
-@onready var anim_player = $Mesh/AnimationPlayer
-
 
 func _ready():
 	# FPV
@@ -40,9 +34,8 @@ func process_movement(delta):
 	var frame_start_velocity = cur_velocity;
 	if (can_move and %"InputHandler".control_active):
 		if is_on_floor():
-			if can_jump and Input.is_action_just_pressed("Movement_Jump") and has_arms:
+			if can_jump and Input.is_action_just_pressed("Movement_Jump"):
 					gravity_vel -= get_gravity().normalized() * jumpStrength
-					anim_player.play("arm_jump")
 			else:
 				var input_move_dir := Input.get_vector("Movement_Left", "Movement_Right", "Movement_Forward", "Movement_Backward")
 				var direction : Vector3 = (%"CameraManager".current_camera().get_forward() * input_move_dir.y) + (%"CameraManager".current_camera().get_right() * input_move_dir.x)
@@ -66,31 +59,11 @@ func reset_velocity():
 	cur_velocity = Vector3.ZERO; velocity = Vector3.ZERO;
 
 func _physics_process(delta):
-	
 	process_movement(delta);
-
-	
-	#speen ball
-	var input_move_dir := Input.get_vector("Movement_Left", "Movement_Right", "Movement_Forward", "Movement_Backward")
-	var move_speed = cur_velocity.length()
-	if input_move_dir.y != 0 and move_speed > 0.01:
-		var rotation_amount = input_move_dir.y * move_speed * wheel_rotation_speed * delta
-		BottomWheel.rotate_z(rotation_amount)
-	if input_move_dir.x != 0 and move_speed > 0.01:
-		var rotation_amount = input_move_dir.x * move_speed * wheel_rotation_speed * delta
-		BottomWheel.rotate_x(rotation_amount)
-		
-	if(Input.is_action_just_pressed("f_key")):
-		anim_player.play("arms_up")
-		
 
 func _process(delta):
 	## Constantly rotate mesh based on look
 	$"Mesh".rotation.y = %"CameraManager".current_camera().rotation_parent.rotation.y;
-	
-	
-	
-	
 
 ### Other
 func pick_up_evolution(level : int):
@@ -151,9 +124,41 @@ func pick_up_evolution(level : int):
 			log = %"TextLoader".load_text("res://text/arms_comms.txt"); 
 			%"UIConsole".show_text_anim(log, false, false);
 		3: # red eye
-			pass
+			%"InputHandler".enable_control(false);
+			await %"UI".close_anim(0.4);
+			$"PrintAudio".play(0);  # Play sound
+			# Log show
+			var log = %"TextLoader".load_text("res://text/red_acq.txt"); 
+			await %"UIConsole".show_text_anim(log, false, false);
+			$"PrintAudio".stop();  # Stop sound
+			((%"CanvasLayer".get_child(0) as ColorRect).material as ShaderMaterial).set_shader_parameter("stage", 1);
+			%"CameraManager".switch_camera(0);
+			has_rgb[0] = true;
+			await %"UI".open_anim(0.4);
+			%"InputHandler".enable_control(true);
+			# Log clear
+			await get_tree().create_timer(2).timeout
+			#%"UIConsole".reset_text(false, true);
+			log = %"TextLoader".load_text("res://text/red_comms.txt"); 
+			%"UIConsole".show_text_anim(log, false, false);
 		4: # green eye
-			pass
+			%"InputHandler".enable_control(false);
+			await %"UI".close_anim(0.4);
+			$"PrintAudio".play(0);  # Play sound
+			# Log show
+			var log = %"TextLoader".load_text("res://text/green_acq.txt"); 
+			await %"UIConsole".show_text_anim(log, false, false);
+			$"PrintAudio".stop();  # Stop sound
+			((%"CanvasLayer".get_child(0) as ColorRect).material as ShaderMaterial).set_shader_parameter("stage", 1);
+			%"CameraManager".switch_camera(0);
+			has_rgb[0] = true;
+			await %"UI".open_anim(0.4);
+			%"InputHandler".enable_control(true);
+			# Log clear
+			await get_tree().create_timer(2).timeout
+			#%"UIConsole".reset_text(false, true);
+			log = %"TextLoader".load_text("res://text/green_comms.txt"); 
+			%"UIConsole".show_text_anim(log, false, false);
 		5: # blue eye
 			pass
 
@@ -167,4 +172,3 @@ func look_down():
 		cur_angle_x = $Eyes/Head/FirstPersonPerspective.rotation_degrees.x;
 		await get_tree().process_frame;
 	return;
-	

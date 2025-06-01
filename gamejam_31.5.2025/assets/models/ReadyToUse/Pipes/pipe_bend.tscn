@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgnil7tvmvnuh"]
+
+[ext_resource type="ArrayMesh" uid="uid://b2nmytwsnjcj4" path="res://assets/meshes/pipes/pipe_bend.res" id="1_efjl3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_efjl3"]
+points = PackedVector3Array(0.376795, 0.5, 0.0711046, 0.376795, 0.5, -0.0711603, 0.123173, 0.5, 0.0711046, 0.376795, 0.376762, 0.142265, 0.376795, 0.376762, -0.142265, 0.123173, 0.5, -0.0711603, -0.0510633, 0.427809, 0.0711046, 0.0360549, 0.340691, 0.142265, 0.123173, 0.376762, 0.142265, 0.376795, 0.253573, 0.0711046, -1.59591e-05, 0, 0.142265, 0.123173, 0.376762, -0.142265, 0.376795, 0.253573, -0.0711603, -1.59591e-05, 0, -0.142265, 0.0360549, 0.340691, -0.142265, -0.0510633, 0.427809, -0.0711603, -0.123205, 0.253573, 0.0711046, -1.59591e-05, 0.253573, 0.142265, 0.123173, 0, 0.0711046, -0.123205, 0, 0.0711046, 0.123173, 0, -0.0711603, -0.123205, 0, -0.0711603, -1.59591e-05, 0.253573, -0.142265, -0.123205, 0.253573, -0.0711603)
+
+[node name="PipeBend" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_efjl3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_efjl3")

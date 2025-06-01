@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://ce1o02mg3orci"]
+[gd_scene load_steps=51 format=3 uid="uid://ce1o02mg3orci"]
 
 [ext_resource type="Script" uid="uid://dsak5lfdep61k" path="res://scripts/player.gd" id="1_errlg"]
 [ext_resource type="Script" uid="uid://clubnvrnjlkpi" path="res://scripts/input_handler.gd" id="1_iyx0m"]
@@ -11,17 +11,24 @@
 [ext_resource type="Script" uid="uid://dwa4vp2e227ua" path="res://scripts/camera_manager.gd" id="4_si7kk"]
 [ext_resource type="Material" uid="uid://c7la7lfcej5o5" path="res://materials/floor0.tres" id="5_pn65j"]
 [ext_resource type="ArrayMesh" uid="uid://dddx4yq5gnxir" path="res://assets/meshes/Droid/Body.res" id="6_ghpyy"]
-[ext_resource type="ArrayMesh" uid="uid://btybx5owt6abf" path="res://assets/meshes/Droid/Bottom.res" id="7_44saj"]
+[ext_resource type="ArrayMesh" uid="uid://btybx5owt6abf" path="res://assets/meshes/Droid/bottom.res" id="7_44saj"]
+[ext_resource type="PackedScene" uid="uid://bj3fa3soodb1n" path="res://assets/models/ReadyToUse/display-wall-wide-cus.tscn" id="7_66mtb"]
 [ext_resource type="Script" uid="uid://c55jwcd0v1hwc" path="res://scripts/collectible.gd" id="7_at5dv"]
 [ext_resource type="FontFile" uid="uid://cs8bja64fgrev" path="res://fonts/bahnschrift.ttf" id="7_jcd4p"]
 [ext_resource type="Script" uid="uid://dmx0lbs3c4s5y" path="res://scripts/ui_console.gd" id="7_uacia"]
 [ext_resource type="ArrayMesh" uid="uid://cmkhauhb610cn" path="res://assets/meshes/Droid/Head.res" id="8_7mbro"]
+[ext_resource type="PackedScene" uid="uid://duuxriuvsoqq5" path="res://assets/models/ReadyToUse/display-wall-cus.tscn" id="8_d83ya"]
+[ext_resource type="PackedScene" uid="uid://d126deua84woh" path="res://assets/models/ReadyToUse/table-printer-v1.tscn" id="9_0ocgh"]
 [ext_resource type="ArrayMesh" uid="uid://c83h67inxdntb" path="res://assets/meshes/Droid/RightArm.res" id="9_7yos8"]
 [ext_resource type="ArrayMesh" uid="uid://kssgtqe1yypw" path="res://assets/meshes/Droid/LeftArm.res" id="10_5jxlq"]
+[ext_resource type="PackedScene" uid="uid://b6364d5gtqlbn" path="res://assets/models/ReadyToUse/computer-system.tscn" id="10_kcn80"]
 [ext_resource type="ArrayMesh" uid="uid://yho70w2y2tm6" path="res://assets/meshes/Droid/EyeR.res" id="11_5jxlq"]
+[ext_resource type="PackedScene" uid="uid://c4f2w5cnxj6qc" path="res://assets/models/ReadyToUse/table-big.tscn" id="11_vbh6s"]
+[ext_resource type="PackedScene" uid="uid://l2nivadlc4l7" path="res://assets/models/ReadyToUse/chair_chair.tscn" id="12_7wv1b"]
 [ext_resource type="ArrayMesh" uid="uid://bqdrdq7cejox6" path="res://assets/meshes/Droid/EyeG.res" id="12_daiq8"]
 [ext_resource type="ArrayMesh" uid="uid://dkbtdnav7ayd8" path="res://assets/meshes/Droid/EyeW.res" id="12_xrtyr"]
 [ext_resource type="ArrayMesh" uid="uid://c7e508rt6d12c" path="res://assets/meshes/Droid/EyeB.res" id="13_c6rvn"]
+[ext_resource type="PackedScene" uid="uid://cr605sdmwrirr" path="res://models/DRON_MAZE.blend" id="13_klam7"]
 [ext_resource type="AudioStream" uid="uid://dcwqmr7a08ayq" path="res://audio/wrumwrum1_play.wav" id="18_2cnsr"]
 [ext_resource type="AudioStream" uid="uid://jbean4owgx64" path="res://audio/printer.wav" id="19_4k8fq"]
 [ext_resource type="AudioStream" uid="uid://lnlh0pn6vjsm" path="res://audio/theSoundTrack.wav" id="20_75pfo"]
@@ -33,7 +40,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://cvl4ww6bowpua" path="res://animations/drone.res" id="26_1dqgb"]
 [ext_resource type="ArrayMesh" uid="uid://badio2laxu833" path="res://meshes/Disk.res" id="27_j7bvy"]
 [ext_resource type="AudioStream" uid="uid://cpdrja6m5r0vp" path="res://audio/drone_final.wav" id="27_y81of"]
-[ext_resource type="PackedScene" uid="uid://buw5nwhd5kp62" path="res://scenes/disk.tscn" id="32_gv2t6"]
+[ext_resource type="PackedScene" path="res://scenes/disk.tscn" id="32_gv2t6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_errlg"]
 size = Vector2(50, 50)
@@ -236,6 +243,40 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environnment/Maze"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_lpvoh")
+
+[node name="DRON_MAZE" parent="Environnment" instance=ExtResource("13_klam7")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -18.7182, 5.13101, 19.2076)
+
+[node name="Objects" type="Node3D" parent="Environnment"]
+
+[node name="Room1" type="Node3D" parent="Environnment/Objects"]
+
+[node name="Display-wall-wide-cus" parent="Environnment/Objects/Room1" instance=ExtResource("7_66mtb")]
+transform = Transform3D(1, 0, 0, 0, -0.965926, -0.258819, 0, 0.258819, -0.965926, 10.4901, 3.37037, -22.1169)
+
+[node name="Display-wall-cus" parent="Environnment/Objects/Room1" instance=ExtResource("8_d83ya")]
+transform = Transform3D(-4.37114e-08, 0.258819, -0.965926, 0, -0.965926, -0.258819, -1, -1.13133e-08, 4.2222e-08, 12.4858, 3.39267, -11.5508)
+
+[node name="Display-wall-wide-cus2" parent="Environnment/Objects/Room1" instance=ExtResource("7_66mtb")]
+transform = Transform3D(1, 0, 0, 0, -0.965926, -0.258819, 0, 0.258819, -0.965926, 21.1459, 3.43207, -19.5806)
+
+[node name="Display-wall-cus2" parent="Environnment/Objects/Room1" instance=ExtResource("8_d83ya")]
+transform = Transform3D(1, 0, 0, 0, -0.965926, -0.258819, 0, 0.258819, -0.965926, 21.1472, 3.43315, -19.573)
+
+[node name="Table-printer-v1" parent="Environnment/Objects/Room1" instance=ExtResource("9_0ocgh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.8447, 0, -12.89)
+
+[node name="Computer-system" parent="Environnment/Objects/Room1" instance=ExtResource("10_kcn80")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.3629, 0, -12.9)
+
+[node name="Table-big" parent="Environnment/Objects/Room1" instance=ExtResource("11_vbh6s")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.9678, 0, -14.9108)
+
+[node name="ChairChair" parent="Environnment/Objects/Room1" instance=ExtResource("12_7wv1b")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 13.0527, -1.19209e-07, -14.0416)
+
+[node name="ChairChair2" parent="Environnment/Objects/Room1" instance=ExtResource("12_7wv1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0527, -1.19209e-07, -15.7831)
 
 [node name="Player" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
@@ -511,22 +552,22 @@ mesh = ExtResource("24_gm488")
 skeleton = NodePath("../..")
 
 [node name="Propeller0" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
-transform = Transform3D(-0.025, 0.0353553, -0.025, -0.0353553, -1.54543e-09, 0.0353553, 0.025, 0.0353553, 0.025, -0.625, 0.05, 0.624)
+transform = Transform3D(-0.0250001, 0.0353552, -0.025, -0.0353553, -1.27986e-07, 0.0353553, 0.0249999, 0.0353554, 0.025, -0.625, 0.05, 0.624)
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
 [node name="Propeller1" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
-transform = Transform3D(0.025, -0.0353553, 0.025, -0.0353553, -1.54543e-09, 0.0353553, -0.025, -0.0353553, -0.025, -0.625, 0.05, -0.624)
+transform = Transform3D(0.0250001, -0.0353552, 0.025, -0.0353553, -1.27986e-07, 0.0353553, -0.0249999, -0.0353554, -0.025, -0.625, 0.05, -0.624)
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
 [node name="Propeller2" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
-transform = Transform3D(-0.025, -0.0353553, -0.025, -0.0353553, -1.54543e-09, 0.0353553, -0.025, 0.0353553, -0.025, 0.625, 0.05, 0.624)
+transform = Transform3D(-0.0249998, -0.0353554, -0.025, -0.0353553, -1.27986e-07, 0.0353553, -0.0250001, 0.0353552, -0.025, 0.625, 0.05, 0.624)
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
 [node name="Propeller3" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
-transform = Transform3D(-0.025, -0.0353553, -0.025, -0.0353553, -1.54543e-09, 0.0353553, -0.025, 0.0353553, -0.025, 0.625, 0.05, -0.625)
+transform = Transform3D(-0.025, -0.0353552, -0.0250001, -0.0353553, -1.27986e-07, 0.0353553, -0.025, 0.0353554, -0.0249999, 0.625, 0.05, -0.625)
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 

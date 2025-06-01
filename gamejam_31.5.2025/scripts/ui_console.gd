@@ -19,6 +19,9 @@ func _ready():
 
 func enable(value : bool):
 	self.visible = value;
+	if (not value):
+		FullScreen.visible = false;
+		SideScreen.visible = false;
 
 func reset_text(full : bool, check_printing : bool = false):
 	if (not check_printing or not is_printing[1 if full else 0]):

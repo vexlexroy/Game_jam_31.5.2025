@@ -7,13 +7,13 @@ Calculating next action<3d:4>
 [COMMUNICATIONS] Receiving request to connect<3d:2.5>
 [COMMUNICATIONS] Request from Sparrow 5.8 accepted<pause:0.4>
 [COMMUNICATIONS] Secure channel successfully established
-Received: Hello, I am Sparrow, a robot test assistant. <pause:1>As you cannot see, I can see you are left in your testing chamber without any stimulus to guide your adaptable mechanisms. <pause:1>I shall assist you.<pause:2>
-Received: I shall lend you my sight so you can navigate to the first data set by yourself. <pause:1>It would be wise to not waste time, hence I may send you the information of your history later.<pause:2>
+Received: [color=#ffffff]Hello, I am Sparrow, a robot test assistant. <pause:1>As you cannot see, I can see you are left in your testing chamber without any stimulus to guide your adaptable mechanisms. <pause:1>I shall assist you.[/color]<pause:2>
+Received: [color=#ffffff]I shall lend you my sight so you can navigate to the first dataset by yourself. <pause:1>It would be wise to not waste time, hence I may send you the information of your history later.[/color]<pause:2>
 [COMMUNICATIONS] Receiving request for wireless sensor sharing connection<3d:2>
 [COMMUNICATIONS] Request accepted
 [COMMUNICATIONS] Routing to processing units<3d:1.2>
 [SENSORS] Wireless visual sensor established
-<3d:2>
+<3d:3.5>
 
 
 

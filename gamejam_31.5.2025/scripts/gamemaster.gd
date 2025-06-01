@@ -3,6 +3,9 @@ extends Node
 @export var skip_intro = true;
 @export var skip_instructions = true;
 
+var intro_ongoing = false;
+var stop_intro = false;
+
 var spawn = null;
 
 ### On start
@@ -13,15 +16,23 @@ func _ready():
 	for i in range(len(%"CameraManager".enabled_cameras)):
 		if (%"CameraManager".enabled_cameras[i]): 
 			%"CameraManager".switch_camera(i); break;
+	# Drone disable collisions and clear go to
+	(%"Drone".get_node("CollisionShape3D") as CollisionShape3D).disabled = true;
+	%"Drone".go_to_point_behaviour = false;
 	# Intro
 	if (not skip_intro):
+		intro_ongoing = true;
 		# Console text
 		%"UI".close_instant();
 		for o in %"TextLoader".opening_sequence:
 			var content = %"TextLoader".load_text(o);
 			await %"UIConsole".show_text_anim(content, true, true);
+			if (stop_intro): 
+				%"UIConsole".reset_text(true); %"UIConsole".enable(false); break;
+		intro_ongoing = false;
 	# Open eyes
 	await %"UI".open_anim(0.4);
+	%"UI".open_instant();
 	%"InputHandler".control_active = true;
 	# Start game -> start soundtrack
 	%"Player/SoundtrackAudio".play(0);
@@ -32,6 +43,10 @@ func _ready():
 			var content = %"TextLoader".load_text(o);
 			await %"UIConsole".show_text_anim(content, false, true);
 	return
+
+func stop_ongoing_intro():
+	stop_intro = true;
+	%"UIConsole".cancel_current_printing[1] = true;
 
 func spawn_fpv_disk():
 	# Choose variation

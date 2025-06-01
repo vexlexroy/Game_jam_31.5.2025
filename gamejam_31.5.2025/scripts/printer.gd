@@ -9,12 +9,16 @@ var player_inside = false
 var printed
 var printing_finished = false
 
+@export var limited_retries = -1;
+var retries_left;
 @export var time_before_retry = 2;
+@export var progression_warning = true;
 var cooldown = 0;
 
 
 func _ready():
 	password_popup.initiate(self)
+	retries_left = limited_retries;
 
 func _on_interact_area_body_entered(body: Node3D) -> void:
 	player_inside = true
@@ -29,7 +33,9 @@ func _process(delta):
 		if Input.is_action_just_pressed("ui_accept"):
 			if !player_inside: return
 			
-			if (not %"Player".has_rgb[0]):
+			if (limited_retries > 0 and retries_left < 1): return;
+			
+			if (progression_warning and not %"Player".has_rgb[0]):
 				%"UIConsole".show_text_anim("That is a surprise that we will reveal later!<pause:1> Shhhhhh!<pause:3>", false, true, true);
 				return;
 			if printing_finished:
@@ -59,3 +65,9 @@ func text_submitted(text):
 		(printed as RigidBody3D).apply_impulse(Vector3(-self.global_basis.z.x * 2, 2, -self.global_basis.z.z * 2));
 	else:
 		cooldown = time_before_retry;
+		if (limited_retries > 0):
+			retries_left -= 1;
+			if (retries_left == 0):
+				%"UIConsole".show_text_anim("[color=#ffffff]Whoops! You messed it up and now the printer is [/color][color=#ff0000]LOCKED[/color][color=#ffffff]! <pause:3>Better luck next time!<pause:10>", false, true, true);
+			else:
+				%"UIConsole".show_text_anim("[color=#ffffff]Wrong! <pause:1>Watch out, you have [/color][color=#0000ff]" + str(retries_left) + "[/color][color=#ffffff] more tries!<pause:10>", false, true, true);

@@ -10,5 +10,6 @@ FEMALE 1: Yes, sir!<pause:0.8>
 (Footsteps heard)<pause:0.4>
 MALE 3: Sir! They are here!
 MALE 2: Already? <pause:0.6>Alright, cut the program and delete all evidence, we cannot let them get access to the program!<pause:0.6>
-(Shots fired)
-[/color]<3d:5>
+(Shots fired)[/color]<pause:3>
+[END OF CONVERSATION]
+<3d:5>

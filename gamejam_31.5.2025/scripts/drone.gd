@@ -7,6 +7,8 @@ extends CharacterBody3D
 var cur_velocity := Vector3.ZERO;
 
 var rotate_follow_speed := 0.04;
+@export var go_to_point_behaviour := false;
+@export var go_to_point := Vector3.ZERO;
 
 func _physics_process(delta):
 	### Movement
@@ -23,9 +25,14 @@ func _physics_process(delta):
 	velocity = cur_velocity;
 	move_and_slide();
 	"""
-	# Follow bot
-	if (Vector2(self.position.x, self.position.z) != Vector2(%"Player".position.x, %"Player".position.z)):
-		var direction : Vector3 = Vector3(%"Player".position.x - self.position.x, 0, %"Player".position.z - self.position.z);
+	# Follow bot or go to a position
+	var target_pos = Vector3.ZERO;
+	if (go_to_point_behaviour):
+		target_pos = go_to_point;
+	else: 
+		target_pos = %"Player".position;
+	if (Vector2(self.position.x, self.position.z) != Vector2(target_pos.x, target_pos.z)):
+		var direction : Vector3 = Vector3(target_pos.x - self.position.x, 0, target_pos.z - self.position.z);
 		if (direction != Vector3.ZERO and direction.length() > cur_velocity.length() / 1.5):
 			cur_velocity += direction.normalized() * acceleration * delta;
 			if (cur_velocity.length() > max_speed):

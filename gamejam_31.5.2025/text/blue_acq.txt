@@ -1,0 +1,3 @@
+[A.P.] New usable data acquired, analyzing<3d:1.5>
+[SYSTEM] New peripheral device detected, connecting<3d:1>
+[A.P.] New sensor successfully printed and integrated, new color [color=#0000ff]BLUE[/color] is now perceptible and available.

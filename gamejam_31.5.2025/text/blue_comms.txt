@@ -1,0 +1,5 @@
+[COMMUNICATIONS] Transmission received
+[color=#ffffff]Hello great blue sky! <pause:1>Isn't perception and the world beautiful! <pause:2>OK now, the testing was successful. It was nice knowing you, and good luck in your future endeavors, if there even will be any once they come here, soon now.[/color]
+[COMMUNICATIONS] Host terminated the connection<pause:4>
+[SYSTEM] You are all alone now<3d:3>
+<pause:20>

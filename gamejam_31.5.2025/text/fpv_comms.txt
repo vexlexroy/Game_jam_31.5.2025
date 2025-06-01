@@ -1,2 +1,4 @@
 [COMMUNICATIONS] Transmission received
-[color=#ffffff]You've finally acquired your own vision!<pause:0.8> If you still wish to see the world from my beautiful point of view you can change to my video stream by pressing the [/color][color=#0000ff]2[/color][color=#ffffff] key.[/color]<pause:10>
+[color=#ffffff]You've finally acquired your own vision!<pause:0.8> If you still wish to see the world from my beautiful point of view you can change to my video stream by pressing the [/color][color=#0000ff]2[/color][color=#ffffff] key.[/color]<pause:4>
+Oh and by the way, your camera has a secret function you can use in a specific way, but you need to figure out what it even does!<pause:3> If you are interested, press the [/color][color=#0000ff]6[/color][color=#ffffff] key.[/color]<pause:4>
+Oh and by the way, your camera has a secret <pause:10>

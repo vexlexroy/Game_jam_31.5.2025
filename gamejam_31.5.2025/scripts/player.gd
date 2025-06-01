@@ -18,6 +18,7 @@ var cur_velocity := Vector3.ZERO;
 func _ready():
 	# FPV
 	%"CameraManager".enabled_cameras[0] = has_fpv;
+	%"CameraManager".enabled_cameras[2] = has_fpv;
 	# Arms
 	Visuals.find_child("RightArm").visible = has_arms;
 	Visuals.find_child("LeftArm").visible = has_arms;
@@ -30,6 +31,9 @@ func _ready():
 			if (has_rgb[2]):
 				stage = 3;
 	((%"CanvasLayer".get_child(0) as ColorRect).material as ShaderMaterial).set_shader_parameter("stage", stage);
+	# Set blue puzzle
+	$"../Environnment/BluePuzzle".get_child(0).visible = not has_rgb[0];
+	$"../Environnment/BluePuzzle".get_child(1).visible = has_rgb[0];
 	return
 
 ### _physics_process
@@ -45,6 +49,7 @@ func process_movement(delta):
 			if can_jump and Input.is_action_just_pressed("Movement_Jump"):
 					gravity_vel -= get_gravity().normalized() * jumpStrength
 					$Mesh/AnimationPlayer.play("robot/robot_jump");
+					%"InputHandler".secret_countdown = 10;
 			else:
 				var input_move_dir := Input.get_vector("Movement_Left", "Movement_Right", "Movement_Forward", "Movement_Backward")
 				var direction : Vector3 = (%"CameraManager".current_camera().get_forward() * input_move_dir.y) + (%"CameraManager".current_camera().get_right() * input_move_dir.x)
@@ -86,6 +91,7 @@ func pick_up_evolution(level : int):
 			await %"UIConsole".show_text_anim(log, false, false);
 			$"PrintAudio".stop();  # Stop sound
 			%"CameraManager".enabled_cameras[0] = true;
+			%"CameraManager".enabled_cameras[2] = true;
 			%"CameraManager".switch_camera(0);
 			has_fpv = true;
 			await %"UI".open_anim(0.4);
@@ -98,6 +104,8 @@ func pick_up_evolution(level : int):
 			%"UIConsole".show_text_anim(log, false, false);
 			get_tree().current_scene.spawn_arms_disk();
 		2: # arms
+			# Enable drone collisions
+			(%"Drone".get_node("CollisionShape3D") as CollisionShape3D).disabled = false;
 			%"InputHandler".enable_control(false);
 			#await %"UI".close_anim(0.4);
 			look_down();
@@ -152,6 +160,13 @@ func pick_up_evolution(level : int):
 			#%"UIConsole".reset_text(false, true);
 			log = %"TextLoader".load_text("res://text/red_comms.txt"); 
 			%"UIConsole".show_text_anim(log, false, false);
+			# Set drone to go to position
+			(%"Drone".get_node("CollisionShape3D") as CollisionShape3D).disabled = true;
+			%"Drone".go_to_point = Vector3(17.75, 12, -16.25);
+			%"Drone".go_to_point_behaviour = true;
+			# Set blue puzzle
+			$"../Environnment/BluePuzzle".get_child(0).visible = false;
+			$"../Environnment/BluePuzzle".get_child(1).visible = true;
 		4: # green eye
 			%"InputHandler".enable_control(false);
 			await %"UI".close_anim(0.4);
@@ -168,11 +183,30 @@ func pick_up_evolution(level : int):
 			%"InputHandler".enable_control(true);
 			# Log clear
 			await get_tree().create_timer(2).timeout
+			# Drone clear go to
+			%"Drone".go_to_point_behaviour = false;
 			#%"UIConsole".reset_text(false, true);
-			log = %"TextLoader".load_text("res://text/green_comms.txt"); 
+			log = %"TextLoader".load_text("res://text/green_comms.txt");
 			%"UIConsole".show_text_anim(log, false, false);
 		5: # blue eye
-			pass
+			%"InputHandler".enable_control(false);
+			await %"UI".close_anim(0.4);
+			$"PrintAudio".play(0);  # Play sound
+			# Log show
+			var log = %"TextLoader".load_text("res://text/blue_acq.txt"); 
+			await %"UIConsole".show_text_anim(log, false, false);
+			$"PrintAudio".stop();  # Stop sound
+			((%"CanvasLayer".get_child(0) as ColorRect).material as ShaderMaterial).set_shader_parameter("stage", 3);
+			%"CameraManager".switch_camera(0);
+			has_rgb[2] = true;
+			await %"UI".open_anim(0.4);
+			%"UI".blur_in(4);
+			%"InputHandler".enable_control(true);
+			# Log clear
+			await get_tree().create_timer(2).timeout
+			#%"UIConsole".reset_text(false, true);
+			log = %"TextLoader".load_text("res://text/blue_comms.txt");
+			%"UIConsole".show_text_anim(log, false, false);
 
 func look_down():
 	%"CameraManager".switch_camera(0);

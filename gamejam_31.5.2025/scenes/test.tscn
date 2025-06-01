@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://ce1o02mg3orci"]
+[gd_scene load_steps=74 format=3 uid="uid://ce1o02mg3orci"]
 
 [ext_resource type="Script" uid="uid://dsak5lfdep61k" path="res://scripts/player.gd" id="1_errlg"]
 [ext_resource type="Script" uid="uid://clubnvrnjlkpi" path="res://scripts/input_handler.gd" id="1_iyx0m"]
@@ -29,6 +29,9 @@
 [ext_resource type="ArrayMesh" uid="uid://dkbtdnav7ayd8" path="res://assets/meshes/Droid/EyeW.res" id="12_xrtyr"]
 [ext_resource type="ArrayMesh" uid="uid://c7e508rt6d12c" path="res://assets/meshes/Droid/EyeB.res" id="13_c6rvn"]
 [ext_resource type="PackedScene" uid="uid://co3dknw6ng6lu" path="res://scenes/eye_g.tscn" id="13_s6cx0"]
+[ext_resource type="PackedScene" uid="uid://4pw3uu46jkc" path="res://scenes/eye_b.tscn" id="14_335pd"]
+[ext_resource type="Texture2D" uid="uid://54mwpmjxp3x6" path="res://images/74blue.png" id="15_376r3"]
+[ext_resource type="Texture2D" uid="uid://8xbfm8qa14ee" path="res://images/74gray.png" id="15_xsg57"]
 [ext_resource type="AudioStream" uid="uid://dcwqmr7a08ayq" path="res://audio/wrumwrum1_play.wav" id="18_2cnsr"]
 [ext_resource type="AudioStream" uid="uid://jbean4owgx64" path="res://audio/printer.wav" id="19_4k8fq"]
 [ext_resource type="AudioStream" uid="uid://lnlh0pn6vjsm" path="res://audio/theSoundTrack.wav" id="20_75pfo"]
@@ -324,6 +327,8 @@ sky = SubResource("Sky_335pd")
 
 [node name="Test" type="Node3D"]
 script = ExtResource("1_yk7ts")
+skip_intro = false
+skip_instructions = false
 
 [node name="InputHandler" type="Node" parent="."]
 unique_name_in_owner = true
@@ -336,7 +341,7 @@ script = ExtResource("3_ajshl")
 [node name="CameraManager" type="Node" parent="." node_paths=PackedStringArray("player_cameras")]
 unique_name_in_owner = true
 script = ExtResource("4_si7kk")
-player_cameras = [NodePath("../Player/Eyes/Head/FirstPersonPerspective"), NodePath("../Drone/TopDownHead/TopDownOrthogonal"), NodePath("../Player/Eyes/ThirdPersonEye/TPHead/ThirdPersonPerspective")]
+player_cameras = [NodePath("../Player/Eyes/Head/FirstPersonPerspective"), NodePath("../Drone/TopDownHead/TopDownOrthogonal"), NodePath("../Player/Eyes/Head/FirstPersonOrthogonal")]
 enabled_cameras = Array[bool]([false, true, true])
 
 [node name="Environnment" type="Node3D" parent="."]
@@ -410,8 +415,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.553, 0.5, 24.011)
 [node name="HallwayObjects" parent="Environnment" instance=ExtResource("11_q6ayx")]
 
 [node name="Printer2" parent="Environnment" instance=ExtResource("5_iq7xp")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.0317, -9.53674e-07, -2.49759)
-printed_object = ExtResource("13_s6cx0")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.5543, -4.76837e-07, -3.2728)
+password = "74"
+printed_object = ExtResource("14_335pd")
+limited_retries = 3
+time_before_retry = 0
+progression_warning = false
+
+[node name="BluePuzzle" type="Node3D" parent="Environnment"]
+
+[node name="Gray" type="Sprite3D" parent="Environnment/BluePuzzle"]
+transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, 7.06197, 1.68782, -3.2757)
+visible = false
+texture = ExtResource("15_xsg57")
+
+[node name="Actual" type="Sprite3D" parent="Environnment/BluePuzzle"]
+transform = Transform3D(-6.55671e-09, 0, -0.15, 0, 0.15, 0, 0.15, 0, -6.55671e-09, 7.06197, 1.68782, -3.2757)
+texture = ExtResource("15_376r3")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
@@ -430,26 +450,31 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Body" type="MeshInstance3D" parent="Player/Mesh/Parent"]
+layers = 4
 mesh = ExtResource("6_ghpyy")
 skeleton = NodePath("../..")
 
 [node name="Bottom" type="MeshInstance3D" parent="Player/Mesh/Parent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00680566, -1.29403, -0.0130734)
+layers = 4
 mesh = ExtResource("7_44saj")
 skeleton = NodePath("../..")
 
 [node name="Head" type="MeshInstance3D" parent="Player/Mesh/Parent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.184, 0)
+layers = 4
 mesh = ExtResource("8_7mbro")
 skeleton = NodePath("../Bottom")
 
 [node name="RightArm" type="MeshInstance3D" parent="Player/Mesh/Parent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32718e-08, -0.0669999, 1.318)
+layers = 4
 mesh = ExtResource("9_7yos8")
 skeleton = NodePath("../Head")
 
 [node name="LeftArm" type="MeshInstance3D" parent="Player/Mesh/Parent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32718e-08, -0.0669999, -1.318)
+layers = 4
 mesh = ExtResource("10_5jxlq")
 skeleton = NodePath("../RightArm")
 
@@ -457,18 +482,22 @@ skeleton = NodePath("../RightArm")
 
 [node name="Red" type="MeshInstance3D" parent="Player/Mesh/Parent/EyeMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500748, 1.5131, 0.155044)
+layers = 4
 mesh = ExtResource("11_5jxlq")
 
 [node name="Green" type="MeshInstance3D" parent="Player/Mesh/Parent/EyeMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.506807, 1.51252, -0.141293)
+layers = 4
 mesh = ExtResource("12_daiq8")
 
 [node name="Blue" type="MeshInstance3D" parent="Player/Mesh/Parent/EyeMeshes"]
 transform = Transform3D(0.949939, 0.311268, -0.0269697, -0.312434, 0.946394, -0.0819999, 3.3935e-09, 0.0863211, 0.996267, 0.41877, 1.64387, 0.00614811)
+layers = 4
 mesh = ExtResource("13_c6rvn")
 
 [node name="White" type="MeshInstance3D" parent="Player/Mesh/Parent/EyeMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603784, 1.38932, 0)
+layers = 4
 mesh = ExtResource("12_xrtyr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Mesh"]
@@ -492,18 +521,10 @@ rotation_parent = NodePath("..")
 
 [node name="FirstPersonOrthogonal" type="Camera3D" parent="Player/Eyes/Head" node_paths=PackedStringArray("rotation_parent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.164)
-visible = false
-current = true
-fov = 19.6875
-script = ExtResource("2_bl13t")
-rotation_parent = NodePath("..")
-rotate_vertical = false
-
-[node name="FirstPersonOrthogonal2" type="Camera3D" parent="Player/Eyes/Head" node_paths=PackedStringArray("rotation_parent")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.164)
-visible = false
+cull_mask = 1048571
 projection = 1
 current = true
+fov = 19.6875
 script = ExtResource("2_bl13t")
 rotation_parent = NodePath("..")
 rotate_vertical = false
@@ -619,6 +640,7 @@ doppler_tracking = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Drone"]
 shape = SubResource("CylinderShape3D_5civd")
+disabled = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, -0.433013, 0.75, 0, 5, 0)
@@ -632,6 +654,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.2, -13.5)
 
 [node name="indicator-special-arrow2" parent="Collectibles/SpawnVariations/Spawn1" instance=ExtResource("33_mi64w")]
 transform = Transform3D(1.28155e-07, 2.98023e-08, -1, 6.63381e-08, 1, 2.98023e-08, 1, -6.63381e-08, 1.28155e-07, -0.664, -0.19, 10)
+visible = false
 
 [node name="indicator-square-b2" parent="Collectibles/SpawnVariations/Spawn1" instance=ExtResource("32_1xwo4")]
 
@@ -667,6 +690,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0.2, -6)
 
 [node name="indicator-special-arrow2" parent="Collectibles/SpawnVariations/Spawn2" instance=ExtResource("33_mi64w")]
 transform = Transform3D(1, -6.63381e-08, 1.71867e-07, 6.63381e-08, 1, 2.98023e-08, -1.71867e-07, -2.98023e-08, 1, 11.9153, -0.19, 5.07792)
+visible = false
 
 [node name="indicator-square-b2" parent="Collectibles/SpawnVariations/Spawn2" instance=ExtResource("32_1xwo4")]
 
@@ -697,6 +721,10 @@ shape = SubResource("BoxShape3D_5civd")
 [node name="Spawn3" type="Node3D" parent="Collectibles/SpawnVariations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0.2, 9)
 
+[node name="indicator-special-arrow2" parent="Collectibles/SpawnVariations/Spawn3" instance=ExtResource("33_mi64w")]
+transform = Transform3D(-4.07325e-08, -2.98023e-08, 1, 6.63381e-08, 1, 2.98023e-08, -1, 6.63381e-08, -4.07325e-08, 0.139543, -0.19, -7.89778)
+visible = false
+
 [node name="indicator-square-b2" parent="Collectibles/SpawnVariations/Spawn3" instance=ExtResource("32_1xwo4")]
 
 [node name="Arrows" type="Node3D" parent="Collectibles/SpawnVariations/Spawn3"]
@@ -723,14 +751,12 @@ transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 2.2, 0, -0.19, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 shape = SubResource("BoxShape3D_5civd")
 
-[node name="indicator-special-arrow2" parent="Collectibles/SpawnVariations/Spawn3" instance=ExtResource("33_mi64w")]
-transform = Transform3D(-4.07325e-08, -2.98023e-08, 1, 6.63381e-08, 1, 2.98023e-08, -1, 6.63381e-08, -4.07325e-08, 0.139543, -0.19, -7.89778)
-
 [node name="Spawn4" type="Node3D" parent="Collectibles/SpawnVariations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.2, 16.5)
 
 [node name="indicator-special-arrow2" parent="Collectibles/SpawnVariations/Spawn4" instance=ExtResource("33_mi64w")]
 transform = Transform3D(-4.07325e-08, -2.98023e-08, 1, 6.63381e-08, 1, 2.98023e-08, -1, 6.63381e-08, -4.07325e-08, -5.01883, -0.19, -14.7508)
+visible = false
 
 [node name="indicator-square-b2" parent="Collectibles/SpawnVariations/Spawn4" instance=ExtResource("32_1xwo4")]
 
@@ -766,6 +792,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0.2, -8.5)
 
 [node name="indicator-special-arrow2" parent="Collectibles/SpawnVariations/Spawn5" instance=ExtResource("33_mi64w")]
 transform = Transform3D(-1, 6.63381e-08, -8.44439e-08, 6.63381e-08, 1, 2.98023e-08, 8.44439e-08, 2.98023e-08, -1, -14.6564, -0.19, 7.65692)
+visible = false
 
 [node name="indicator-square-b2" parent="Collectibles/SpawnVariations/Spawn5" instance=ExtResource("32_1xwo4")]
 
@@ -938,6 +965,34 @@ General Kenobi
 scroll_following = true
 visible_characters = 0
 visible_ratio = 0.0
+
+[node name="Skip" type="MarginContainer" parent="UI/UIConsole/FullScreen"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/UIConsole/FullScreen/Skip"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 1, 1, 0.501961)
+theme_override_constants/line_separation = 6
+theme_override_fonts/normal_font = ExtResource("7_jcd4p")
+theme_override_font_sizes/normal_font_size = 20
+text = "Press ESC to skip..."
+scroll_following = true
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="SideScreen" type="Control" parent="UI/UIConsole"]
 custom_minimum_size = Vector2(300, 400)

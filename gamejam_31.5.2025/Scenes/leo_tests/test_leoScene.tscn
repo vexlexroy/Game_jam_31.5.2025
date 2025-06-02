@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ovft5bt4w8kk"]
 
-[ext_resource type="Environment" uid="uid://cdo243nbaac8m" path="res://Scenes/leo_tests/environments/camera_post_process.tres" id="1_j8xad"]
-[ext_resource type="PackedScene" uid="uid://mc07ho4m6a4f" path="res://Scenes/leo_tests/test_pizzle_rgb.glb" id="2_xodxo"]
+[ext_resource type="Environment" uid="uid://cdo243nbaac8m" path="res://scenes/leo_tests/environments/camera_post_process.tres" id="1_j8xad"]
+[ext_resource type="PackedScene" uid="uid://mc07ho4m6a4f" path="res://scenes/leo_tests/test_pizzle_rgb.glb" id="2_xodxo"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xodxo"]
 

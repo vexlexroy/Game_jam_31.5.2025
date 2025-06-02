@@ -11,7 +11,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dddx4yq5gnxir" path="res://assets/meshes/Droid/Body.res" id="8_nstam"]
 [ext_resource type="PackedScene" uid="uid://duuxriuvsoqq5" path="res://assets/models/ReadyToUse/display-wall-cus.tscn" id="8_r7swm"]
 [ext_resource type="PackedScene" uid="uid://d126deua84woh" path="res://assets/models/ReadyToUse/table-printer-v1.tscn" id="9_bpmw5"]
-[ext_resource type="ArrayMesh" uid="uid://btybx5owt6abf" path="res://assets/meshes/Droid/bottom.res" id="9_r7swm"]
+[ext_resource type="ArrayMesh" uid="uid://btybx5owt6abf" path="res://assets/meshes/Droid/Bottom.res" id="9_r7swm"]
 [ext_resource type="ArrayMesh" uid="uid://cmkhauhb610cn" path="res://assets/meshes/Droid/Head.res" id="10_bpmw5"]
 [ext_resource type="PackedScene" uid="uid://b6364d5gtqlbn" path="res://assets/models/ReadyToUse/computer-system.tscn" id="10_s4pjq"]
 [ext_resource type="PackedScene" uid="uid://c4f2w5cnxj6qc" path="res://assets/models/ReadyToUse/table-big.tscn" id="11_5y6tx"]

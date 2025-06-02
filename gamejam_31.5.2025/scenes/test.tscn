@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://d126deua84woh" path="res://assets/models/ReadyToUse/table-printer-v1.tscn" id="9_p8c7m"]
 [ext_resource type="ArrayMesh" uid="uid://kssgtqe1yypw" path="res://assets/meshes/Droid/LeftArm.res" id="10_5jxlq"]
 [ext_resource type="ArrayMesh" uid="uid://yho70w2y2tm6" path="res://assets/meshes/Droid/EyeR.res" id="11_5jxlq"]
-[ext_resource type="PackedScene" path="res://scenes/hallway_objects.tscn" id="11_q6ayx"]
+[ext_resource type="PackedScene" uid="uid://pnxttielkexa" path="res://scenes/hallway_objects.tscn" id="11_q6ayx"]
 [ext_resource type="ArrayMesh" uid="uid://bqdrdq7cejox6" path="res://assets/meshes/Droid/EyeG.res" id="12_daiq8"]
 [ext_resource type="ArrayMesh" uid="uid://dkbtdnav7ayd8" path="res://assets/meshes/Droid/EyeW.res" id="12_xrtyr"]
 [ext_resource type="ArrayMesh" uid="uid://c7e508rt6d12c" path="res://assets/meshes/Droid/EyeB.res" id="13_c6rvn"]
@@ -597,25 +597,25 @@ mesh = ExtResource("24_gm488")
 skeleton = NodePath("../..")
 
 [node name="Propeller0" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
-transform = Transform3D(-0.025, 0.0353553, -0.025, -0.0353553, -1.54543e-09, 0.0353553, 0.025, 0.0353553, 0.025, -0.625, 0.05, 0.624)
+transform = Transform3D(-0.0250001, 0.0353552, -0.025, -0.0353553, -1.27986e-07, 0.0353553, 0.0249999, 0.0353554, 0.025, -0.625, 0.05, 0.624)
 layers = 2
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
 [node name="Propeller1" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
-transform = Transform3D(0.025, -0.0353553, 0.025, -0.0353553, -1.54543e-09, 0.0353553, -0.025, -0.0353553, -0.025, -0.625, 0.05, -0.624)
+transform = Transform3D(0.0250001, -0.0353552, 0.025, -0.0353553, -1.27986e-07, 0.0353553, -0.0249999, -0.0353554, -0.025, -0.625, 0.05, -0.624)
 layers = 2
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
 [node name="Propeller2" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
-transform = Transform3D(-0.025, -0.0353553, -0.025, -0.0353553, -1.54543e-09, 0.0353553, -0.025, 0.0353553, -0.025, 0.625, 0.05, 0.624)
+transform = Transform3D(-0.0249998, -0.0353554, -0.025, -0.0353553, -1.27986e-07, 0.0353553, -0.0250001, 0.0353552, -0.025, 0.625, 0.05, 0.624)
 layers = 2
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
 
 [node name="Propeller3" type="MeshInstance3D" parent="Drone/Mesh/Parent"]
-transform = Transform3D(-0.025, -0.0353553, -0.025, -0.0353553, -1.54543e-09, 0.0353553, -0.025, 0.0353553, -0.025, 0.625, 0.05, -0.625)
+transform = Transform3D(-0.025, -0.0353552, -0.0250001, -0.0353553, -1.27986e-07, 0.0353553, -0.025, 0.0353554, -0.0249999, 0.625, 0.05, -0.625)
 layers = 2
 mesh = ExtResource("25_kay4s")
 skeleton = NodePath("../..")
@@ -902,7 +902,7 @@ script = ExtResource("4_j5jx5")
 Blink_Node = NodePath("Blink")
 
 [node name="Blink" type="TextureRect" parent="UI"]
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
 offset_top = -1024.0
 grow_horizontal = 2

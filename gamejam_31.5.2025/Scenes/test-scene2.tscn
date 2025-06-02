@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dthac3lsfrvrp"]
 
-[ext_resource type="PackedScene" uid="uid://yi2kdxmvs3uf" path="res://Scenes/test-scene.tscn" id="1_cmcip"]
+[ext_resource type="PackedScene" uid="uid://yi2kdxmvs3uf" path="res://scenes/test-scene.tscn" id="1_cmcip"]
 [ext_resource type="Script" uid="uid://dehl15u4ukycd" path="res://scripts/test/color_evolution_test.gd" id="1_ogpgc"]
 [ext_resource type="Shader" uid="uid://c0jglem6irnn" path="res://scripts/test/vision-evolution.gdshader" id="2_ogpgc"]
 

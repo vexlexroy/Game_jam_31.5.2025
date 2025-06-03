@@ -522,9 +522,11 @@ rotation_parent = NodePath("..")
 [node name="FirstPersonOrthogonal" type="Camera3D" parent="Player/Eyes/Head" node_paths=PackedStringArray("rotation_parent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.164)
 cull_mask = 1048571
+v_offset = 1.0
 projection = 1
 current = true
 fov = 19.6875
+size = 1.9
 script = ExtResource("2_bl13t")
 rotation_parent = NodePath("..")
 rotate_vertical = false

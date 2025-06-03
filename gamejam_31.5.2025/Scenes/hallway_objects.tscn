@@ -273,7 +273,7 @@ transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 1.526, 3
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.77656, 4.97215e-19, -8.22505)
 
 [node name="DeskComputerCorner2" parent="." instance=ExtResource("8_cgmsa")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.80328, 4.97215e-19, 6.78178)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.80418, -0.00318226, 6.78774)
 
 [node name="DeskComputerCorner3" parent="." instance=ExtResource("8_cgmsa")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 5.69993, 4.97215e-19, 21.0807)
